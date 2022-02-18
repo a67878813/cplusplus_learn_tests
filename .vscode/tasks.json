@@ -24,6 +24,10 @@
                 "-std=c++2a", // 这里采用c++17标准（推荐），C语言改成"-std=c11"
                 "-fms-extensions",
                 // "-std=c11", // 这里采用c++17标准（推荐），C语言改成"-std=c11"
+                // "-fmodules-ts",
+                // "-fbuiltin-module-map",
+                // "-fimplicit-module-maps",
+                // "-fprebuilt-module-path=${fileDirname}",//c++2a module path
             ], // 编译的命令，其实相当于VSC帮你在终端中输了这一串东西
             "group": {
                 "kind": "build",
