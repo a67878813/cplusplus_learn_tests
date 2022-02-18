@@ -1,0 +1,1 @@
+rewind(employeeFile);fgets(Employee.Employee_Name,40,stdin);
