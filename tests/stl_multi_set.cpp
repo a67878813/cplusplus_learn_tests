@@ -6,7 +6,7 @@
 #include <deque>
 #include <queue>
 #include <set>
-
+#include <unordered_set>
 
 using namespace std;
 
@@ -25,7 +25,7 @@ public:
 
 
 int main(){
-    set<int> tset={1,2,3,5,7};
+    multiset<int> tset={1,2,3,5,7};
     std::cout << tset.size() << std::endl;
     tset.insert(5);
     tset.insert({10,12,144});
@@ -43,14 +43,16 @@ int main(){
     std::cout << "ub = " << *ub << std::endl;
     auto lb = tset.lower_bound(7);
     std::cout << *lb << std::endl;
-    tset.insert({-10,- 30,-20});
+    vector<int> v = {-10,- 30,-20};
+    tset.insert(v.begin(),v.end());
     for(auto& el:tset)
         std::cout << el << " ";
     std::cout << std::endl;
     
-    set<Student> sst = {{50,"Simon"},{20,"Thomas"}     };
+    multiset<Student> sst = {{50,"Simon"},{20,"Thomas"}     };
     for(auto& st : sst)
         st.print_student();
 
-    return 0;
-}
+
+return 0;
+} 
