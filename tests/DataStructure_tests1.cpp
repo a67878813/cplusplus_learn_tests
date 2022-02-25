@@ -39,38 +39,75 @@ public:
     }
 };
  */
+//ads
+using fp = int (*)(int);
+typedef int (*fp2)(int);
 
-class MyClass
-{
-public:
-    MyClass();
-    MyClass(MyClass &&) = default;
-    MyClass(const MyClass &) = default;
-    MyClass &operator=(MyClass &&) = default;
-    MyClass &operator=(const MyClass &) = default;
-    ~MyClass();
+int test2(fp _in, int b){
+    int c = _in(10) + b;
+    return c;
+};
 
+class A{
 private:
+    int a ;
     
-};
-
-MyClass::MyClass()
-{
-}
-
-MyClass::~MyClass()
-{
-}
-class vector2 : private std::vector<int32_t>{
-private:
-    int* arr{nullptr};
 public:
-    vector2(int32_t size):
-            
+    A(int aa = 0):a(aa){};
+    ~A()= default;;
+    void setA(int aa =1){
+        a =aa;
+    }
+    virtual void print(){
+        std::cout << "A: "<< a << std::endl;
+    }
+    virtual void printa(){
+        std::cout << "A1 : " <<a<< std::endl;
+    }
 
-            }
 };
+
+class B : public A{
+    int b;
+    public:
+    B()
+        :A(),b(0){}
+    B(int aa, int bb)
+        :A(aa),b(bb){}
+    ~B()= default;
+    
+    virtual void print(){
+        A::print();
+        std::cout << "B: "<<b << std::endl;
+    }
+    virtual void printa(){
+        A::printa();
+        std::cout << "B:"<< b << std::endl;
+    }
+
+};
+
+
 
 int main(){
+    A a;
+    B b;
+    void (A::*ptr)(int) = &A::setA;
+    using ptr2 = void (A::*)(int) ;
+    
+    std::cout << "ptr = " << ptr << std::endl;
+
+    A* pa = &a;
+
+    std::cout << "pa = " << pa << std::endl;
+    printf("A::set: %p\n",&A::setA);
+    printf("A::print: %p\n",&A::print);
+    // std::cout << "ptr2 = " << (&A::print) << std::endl;
+    // std::cout << "ptr3 = " << &A::printa << std::endl;
+    a.print();
+    (pa->* ptr)(1000);  //pa is Class pointer,it points to a instance,    operator ->* to use it's instace's/Class's??? function
+    a.print();
+    (a.*ptr)(2000);    //a is instance ,operator .* to use its Class function.
+    a.print();
     return 0;
 }
