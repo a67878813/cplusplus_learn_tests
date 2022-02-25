@@ -23,17 +23,18 @@ public:
         return (this->id >other.id );
     }
     void print_student() const {
-        std::cout << "[ name =" << name << ", id = "<< id << "] \n" << std::endl;
+        std::cout << "[ name =" << name << ", id = "<< id << "]" << std::endl;
     }  
 
 };
 class StudentHashFunction{
 public:
     size_t operator()(const Student& s ) const {
-        std::cout << "hash 2 : " << hash<string>{}(s.name) << std::endl;
+        // std::cout << "hash 2 : " << hash<string>{}(s.name) << std::endl;
+         
         size_t ttemp;
         ttemp = hash<int>{}(s.id)+ hash<string>{}(s.name);
-        std::cout << "ttemp"<< ttemp << std::endl;
+        // std::cout << "ttemp"<< ttemp << std::endl;
         return ttemp ;
     }
 };
@@ -49,9 +50,14 @@ int main(){
     std::cout << hash<float>{}(100.5) << std::endl;
      */
     
-    unordered_set<int> us = {5,10,4,20,5,5,15};
+    unordered_multiset<int> us = {5,10,4,20,5,5,15};
     for(int x: us)
         std::cout << x << " ";
+    cout<< endl;
+    auto its = us.equal_range(5);
+    for(auto it = its.first; it != its.second; ++it)
+        std::cout << *it << " ";
+    std::cout  << std::endl;
     std::cout  << std::endl;
     std::cout << "size = "<< us.size() << std::endl;
     std::cout << "count(5) = "<< us.count(5) << std::endl;
@@ -69,9 +75,12 @@ int main(){
         std::cout << x << " ";
     std::cout  << std::endl; */
     std::cout << "==============" << std::endl;
-    unordered_set<Student, StudentHashFunction> uss = {  {20,"simon"}, {50, "Test"}, {33,"Thomas"} };
+    unordered_multiset<Student, StudentHashFunction> uss = {  {20,"simon"}, {50, "Test"}, {33,"Thomas"} };
+    // unordered_set<Student> uss2 = {  {20,"simon"}, {50, "Test"}, {33,"Thomas"} };
     // std::cout << uss.size() << std::endl;
     for(auto&st:uss)
         st.print_student();
+        // there is no ordering between them. should notice the difference between ordered set and unordered set.
+        //and understand how to use them and how it internally works.
     return 0;
 }
