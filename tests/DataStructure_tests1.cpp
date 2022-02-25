@@ -50,10 +50,14 @@ int test2(fp _in, int b){
 
 class A{
 private:
-    int a ;
-    
+    int a =0 ;
 public:
-    A(int aa = 0):a(aa){};
+    A()
+        :p1(&A::funa),p2(&A::funb){}
+    A(int aa)
+        :a(aa){}
+
+
     ~A()= default;;
     void setA(int aa =1){
         a =aa;
@@ -64,6 +68,20 @@ public:
     virtual void printa(){
         std::cout << "A1 : " <<a<< std::endl;
     }
+    void funa(void){
+        std::cout << "funaA" << std::endl;
+    };
+    static void funb(void){
+        std::cout << "static funb B" << std::endl;
+    };
+
+    void (A::*p1)(void);
+    using p1_ = void(A::*)(void);// tiny grammar difference
+
+
+    void (*p2)(void);
+    using p2_ = void(*)(void);
+
 
 };
 
@@ -79,11 +97,12 @@ class B : public A{
     virtual void print(){
         A::print();
         std::cout << "B: "<<b << std::endl;
-    }
+    };
     virtual void printa(){
         A::printa();
         std::cout << "B:"<< b << std::endl;
-    }
+    };
+
 
 };
 
@@ -105,9 +124,16 @@ int main(){
     // std::cout << "ptr2 = " << (&A::print) << std::endl;
     // std::cout << "ptr3 = " << &A::printa << std::endl;
     a.print();
-    (pa->* ptr)(1000);  //pa is Class pointer,it points to a instance,    operator ->* to use it's instace's/Class's??? function
+    (pa->* ptr)(1000);  //pa is Class pointer,it points to a instance,    operator ->* to use it's instace's/Class's??? function 
+            //  &a->*ptr        *&a  *&A::setA    //     a    a::setA 
     a.print();
-    (a.*ptr)(2000);    //a is instance ,operator .* to use its Class function.
+    (a.* ptr)(2000);    //a is instance ,operator .* to use its Class function .
+        // a.     (*ptr)        a.*& A::setA      //     a   .  A::setA
     a.print();
+
+
+
+    using p = void (A::*)(void);
+    (a.*a.p1)  ();
     return 0;
 }
