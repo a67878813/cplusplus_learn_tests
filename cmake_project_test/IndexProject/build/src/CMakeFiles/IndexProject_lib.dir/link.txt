@@ -1,0 +1,2 @@
+/usr/bin/ar qc libIndexProject_lib.a CMakeFiles/IndexProject_lib.dir/Formula.cpp.o CMakeFiles/IndexProject_lib.dir/general_performance_test1.cpp.o
+/usr/bin/ranlib libIndexProject_lib.a

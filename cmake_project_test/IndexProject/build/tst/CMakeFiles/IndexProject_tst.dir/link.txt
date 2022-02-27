@@ -1,0 +1,1 @@
+/usr/bin/clang++ CMakeFiles/IndexProject_tst.dir/Formula-test.cpp.o CMakeFiles/IndexProject_tst.dir/main.cpp.o -o IndexProject_tst  ../src/libIndexProject_lib.a ../lib/libgtest.a 

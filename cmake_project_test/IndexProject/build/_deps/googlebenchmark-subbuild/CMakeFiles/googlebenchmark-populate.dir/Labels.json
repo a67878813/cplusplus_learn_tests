@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/CMakeFiles/googlebenchmark-populate"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/CMakeFiles/googlebenchmark-populate.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/CMakeFiles/googlebenchmark-populate-complete.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/googlebenchmark-populate-prefix/src/googlebenchmark-populate-stamp/googlebenchmark-populate-install.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/googlebenchmark-populate-prefix/src/googlebenchmark-populate-stamp/googlebenchmark-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/googlebenchmark-populate-prefix/src/googlebenchmark-populate-stamp/googlebenchmark-populate-download.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/googlebenchmark-populate-prefix/src/googlebenchmark-populate-stamp/googlebenchmark-populate-update.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/googlebenchmark-populate-prefix/src/googlebenchmark-populate-stamp/googlebenchmark-populate-patch.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/googlebenchmark-populate-prefix/src/googlebenchmark-populate-stamp/googlebenchmark-populate-configure.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/googlebenchmark-populate-prefix/src/googlebenchmark-populate-stamp/googlebenchmark-populate-build.rule"
+		},
+		{
+			"file" : "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googlebenchmark-subbuild/googlebenchmark-populate-prefix/src/googlebenchmark-populate-stamp/googlebenchmark-populate-test.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"googlebenchmark-populate"
+		],
+		"name" : "googlebenchmark-populate"
+	}
+}

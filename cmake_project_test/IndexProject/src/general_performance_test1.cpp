@@ -17,7 +17,7 @@
 #include <memory_resource>
 #include <chrono>
 #include <functional>
-#include <benchmark/benchmark.h> //google benchmark
+// #include <benchmark/benchmark.h> //google benchmark
 // #include <gtest/gtest.h>
 using namespace std;
 
@@ -76,7 +76,7 @@ int accumulate(int x){
 // use pmr::vector to allocate vector on stack
     // pmr === polymorphic memory resources.
 
-
+/* 
 static void pmrVector(benchmark::State& state){
     constexpr size_t BUF_SIZE = 2048; 
     std::pmr::pool_options options;
@@ -103,7 +103,7 @@ static void stdVector(benchmark::State& state){
             benchmark::DoNotOptimize(vec);
         }
     }
-};
+}; */
 // BENCHMARK(pmrVector);
 // BENCHMARK(stdVector);
 // BENCHMARK_MAIN();jm
