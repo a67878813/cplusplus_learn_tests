@@ -12,6 +12,12 @@ set(CMAKE_CXX_STANDARD 20)
 
 # project name
 project(IndexProject VERSION 0.1)
+
+add_custom_target(clean-all
+   COMMAND ${CMAKE_BUILD_TOOL} clean
+   COMMAND ${CMAKE_COMMAND} -P clean-all.cmake
+)
+
 #采用c++14标准
 # set(CMAKE_CXX_STANDARD 17)
 

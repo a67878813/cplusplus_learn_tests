@@ -1,1 +1,0 @@
-/usr/bin/clang++ CMakeFiles/exec_2.dir/main.cpp.o -o exec_2  -Wl,-rpath,/home/sa/Cpp/cmake_project_test/IndexProject/build/src ../src/libsrc_lib.so 

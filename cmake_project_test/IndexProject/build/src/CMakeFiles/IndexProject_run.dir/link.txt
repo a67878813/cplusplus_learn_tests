@@ -1,1 +1,0 @@
-/usr/bin/clang++ CMakeFiles/IndexProject_run.dir/Formula.cpp.o CMakeFiles/IndexProject_run.dir/general_performance_test1.cpp.o -o IndexProject_run 
