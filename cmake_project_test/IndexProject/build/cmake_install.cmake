@@ -44,22 +44,17 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googletest-build/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/sa/Cpp/cmake_project_test/IndexProject/build/src/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("/home/sa/Cpp/cmake_project_test/IndexProject/build/tst/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googletest-build/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/benchmark-build/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

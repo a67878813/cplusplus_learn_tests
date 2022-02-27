@@ -187,34 +187,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/CMakeFiles/IndexProject_lib.dir/rule:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/IndexProject_lib.dir/rule
-.PHONY : src/CMakeFiles/IndexProject_lib.dir/rule
+src/CMakeFiles/src_lib.dir/rule:
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/src_lib.dir/rule
+.PHONY : src/CMakeFiles/src_lib.dir/rule
 
 # Convenience name for target.
-IndexProject_lib: src/CMakeFiles/IndexProject_lib.dir/rule
+src_lib: src/CMakeFiles/src_lib.dir/rule
 
-.PHONY : IndexProject_lib
+.PHONY : src_lib
 
 # fast build rule for target.
-IndexProject_lib/fast:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_lib.dir/build.make src/CMakeFiles/IndexProject_lib.dir/build
-.PHONY : IndexProject_lib/fast
-
-# Convenience name for target.
-src/CMakeFiles/IndexProject_run.dir/rule:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/IndexProject_run.dir/rule
-.PHONY : src/CMakeFiles/IndexProject_run.dir/rule
-
-# Convenience name for target.
-IndexProject_run: src/CMakeFiles/IndexProject_run.dir/rule
-
-.PHONY : IndexProject_run
-
-# fast build rule for target.
-IndexProject_run/fast:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_run.dir/build.make src/CMakeFiles/IndexProject_run.dir/build
-.PHONY : IndexProject_run/fast
+src_lib/fast:
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src_lib.dir/build.make src/CMakeFiles/src_lib.dir/build
+.PHONY : src_lib/fast
 
 Formula.o: Formula.cpp.o
 
@@ -222,8 +207,7 @@ Formula.o: Formula.cpp.o
 
 # target to build an object file
 Formula.cpp.o:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_lib.dir/build.make src/CMakeFiles/IndexProject_lib.dir/Formula.cpp.o
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_run.dir/build.make src/CMakeFiles/IndexProject_run.dir/Formula.cpp.o
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src_lib.dir/build.make src/CMakeFiles/src_lib.dir/Formula.cpp.o
 .PHONY : Formula.cpp.o
 
 Formula.i: Formula.cpp.i
@@ -232,8 +216,7 @@ Formula.i: Formula.cpp.i
 
 # target to preprocess a source file
 Formula.cpp.i:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_lib.dir/build.make src/CMakeFiles/IndexProject_lib.dir/Formula.cpp.i
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_run.dir/build.make src/CMakeFiles/IndexProject_run.dir/Formula.cpp.i
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src_lib.dir/build.make src/CMakeFiles/src_lib.dir/Formula.cpp.i
 .PHONY : Formula.cpp.i
 
 Formula.s: Formula.cpp.s
@@ -242,39 +225,8 @@ Formula.s: Formula.cpp.s
 
 # target to generate assembly for a file
 Formula.cpp.s:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_lib.dir/build.make src/CMakeFiles/IndexProject_lib.dir/Formula.cpp.s
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_run.dir/build.make src/CMakeFiles/IndexProject_run.dir/Formula.cpp.s
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src_lib.dir/build.make src/CMakeFiles/src_lib.dir/Formula.cpp.s
 .PHONY : Formula.cpp.s
-
-general_performance_test1.o: general_performance_test1.cpp.o
-
-.PHONY : general_performance_test1.o
-
-# target to build an object file
-general_performance_test1.cpp.o:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_lib.dir/build.make src/CMakeFiles/IndexProject_lib.dir/general_performance_test1.cpp.o
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_run.dir/build.make src/CMakeFiles/IndexProject_run.dir/general_performance_test1.cpp.o
-.PHONY : general_performance_test1.cpp.o
-
-general_performance_test1.i: general_performance_test1.cpp.i
-
-.PHONY : general_performance_test1.i
-
-# target to preprocess a source file
-general_performance_test1.cpp.i:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_lib.dir/build.make src/CMakeFiles/IndexProject_lib.dir/general_performance_test1.cpp.i
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_run.dir/build.make src/CMakeFiles/IndexProject_run.dir/general_performance_test1.cpp.i
-.PHONY : general_performance_test1.cpp.i
-
-general_performance_test1.s: general_performance_test1.cpp.s
-
-.PHONY : general_performance_test1.s
-
-# target to generate assembly for a file
-general_performance_test1.cpp.s:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_lib.dir/build.make src/CMakeFiles/IndexProject_lib.dir/general_performance_test1.cpp.s
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IndexProject_run.dir/build.make src/CMakeFiles/IndexProject_run.dir/general_performance_test1.cpp.s
-.PHONY : general_performance_test1.cpp.s
 
 # Help Target
 help:
@@ -289,14 +241,10 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... IndexProject_lib"
-	@echo "... IndexProject_run"
+	@echo "... src_lib"
 	@echo "... Formula.o"
 	@echo "... Formula.i"
 	@echo "... Formula.s"
-	@echo "... general_performance_test1.o"
-	@echo "... general_performance_test1.i"
-	@echo "... general_performance_test1.s"
 .PHONY : help
 
 

@@ -1,0 +1,5 @@
+if(EXISTS "/home/sa/Cpp/cmake_project_test/IndexProject/build/formula_test[1]_tests.cmake")
+  include("/home/sa/Cpp/cmake_project_test/IndexProject/build/formula_test[1]_tests.cmake")
+else()
+  add_test(formula_test_NOT_BUILT formula_test_NOT_BUILT)
+endif()

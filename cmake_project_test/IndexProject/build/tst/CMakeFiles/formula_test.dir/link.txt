@@ -1,0 +1,1 @@
+/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/formula_test.dir/Formula-test.cpp.o -o formula_test  -Wl,-rpath,/home/sa/Cpp/cmake_project_test/IndexProject/build/src ../src/libsrc_lib.so ../lib/libgtest_main.a ../lib/libgtest.a 

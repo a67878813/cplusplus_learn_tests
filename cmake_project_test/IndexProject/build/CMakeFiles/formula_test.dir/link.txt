@@ -1,0 +1,1 @@
+/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/formula_test.dir/tst/Formula-test.cpp.o -o formula_test 

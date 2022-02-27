@@ -1,1 +1,1 @@
-/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/hello_test.dir/hello_test.cc.o -o hello_test  lib/libgtest_main.a lib/libgtest.a 
+/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/hello_test.dir/hello_test.cpp.o -o hello_test  -Wl,-rpath,/home/sa/Cpp/cmake_project_test/IndexProject/build/src lib/libgtest_main.a src/libsrc_lib.so lib/libgtest.a 

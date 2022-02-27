@@ -76,29 +76,30 @@ include CMakeFiles/hello_test.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/hello_test.dir/flags.make
 
-CMakeFiles/hello_test.dir/hello_test.cc.o: CMakeFiles/hello_test.dir/flags.make
-CMakeFiles/hello_test.dir/hello_test.cc.o: ../hello_test.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/hello_test.dir/hello_test.cc.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hello_test.dir/hello_test.cc.o -c /home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cc
+CMakeFiles/hello_test.dir/hello_test.cpp.o: CMakeFiles/hello_test.dir/flags.make
+CMakeFiles/hello_test.dir/hello_test.cpp.o: ../hello_test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/hello_test.dir/hello_test.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hello_test.dir/hello_test.cpp.o -c /home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cpp
 
-CMakeFiles/hello_test.dir/hello_test.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hello_test.dir/hello_test.cc.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cc > CMakeFiles/hello_test.dir/hello_test.cc.i
+CMakeFiles/hello_test.dir/hello_test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hello_test.dir/hello_test.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cpp > CMakeFiles/hello_test.dir/hello_test.cpp.i
 
-CMakeFiles/hello_test.dir/hello_test.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello_test.dir/hello_test.cc.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cc -o CMakeFiles/hello_test.dir/hello_test.cc.s
+CMakeFiles/hello_test.dir/hello_test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello_test.dir/hello_test.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cpp -o CMakeFiles/hello_test.dir/hello_test.cpp.s
 
 # Object files for target hello_test
 hello_test_OBJECTS = \
-"CMakeFiles/hello_test.dir/hello_test.cc.o"
+"CMakeFiles/hello_test.dir/hello_test.cpp.o"
 
 # External object files for target hello_test
 hello_test_EXTERNAL_OBJECTS =
 
-hello_test: CMakeFiles/hello_test.dir/hello_test.cc.o
+hello_test: CMakeFiles/hello_test.dir/hello_test.cpp.o
 hello_test: CMakeFiles/hello_test.dir/build.make
 hello_test: lib/libgtest_main.a
+hello_test: src/libsrc_lib.so
 hello_test: lib/libgtest.a
 hello_test: CMakeFiles/hello_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable hello_test"

@@ -187,19 +187,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-tst/CMakeFiles/IndexProject_tst.dir/rule:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tst/CMakeFiles/IndexProject_tst.dir/rule
-.PHONY : tst/CMakeFiles/IndexProject_tst.dir/rule
+tst/CMakeFiles/formula_test.dir/rule:
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tst/CMakeFiles/formula_test.dir/rule
+.PHONY : tst/CMakeFiles/formula_test.dir/rule
 
 # Convenience name for target.
-IndexProject_tst: tst/CMakeFiles/IndexProject_tst.dir/rule
+formula_test: tst/CMakeFiles/formula_test.dir/rule
 
-.PHONY : IndexProject_tst
+.PHONY : formula_test
 
 # fast build rule for target.
-IndexProject_tst/fast:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/IndexProject_tst.dir/build.make tst/CMakeFiles/IndexProject_tst.dir/build
-.PHONY : IndexProject_tst/fast
+formula_test/fast:
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/formula_test.dir/build.make tst/CMakeFiles/formula_test.dir/build
+.PHONY : formula_test/fast
 
 Formula-test.o: Formula-test.cpp.o
 
@@ -207,7 +207,7 @@ Formula-test.o: Formula-test.cpp.o
 
 # target to build an object file
 Formula-test.cpp.o:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/IndexProject_tst.dir/build.make tst/CMakeFiles/IndexProject_tst.dir/Formula-test.cpp.o
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/formula_test.dir/build.make tst/CMakeFiles/formula_test.dir/Formula-test.cpp.o
 .PHONY : Formula-test.cpp.o
 
 Formula-test.i: Formula-test.cpp.i
@@ -216,7 +216,7 @@ Formula-test.i: Formula-test.cpp.i
 
 # target to preprocess a source file
 Formula-test.cpp.i:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/IndexProject_tst.dir/build.make tst/CMakeFiles/IndexProject_tst.dir/Formula-test.cpp.i
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/formula_test.dir/build.make tst/CMakeFiles/formula_test.dir/Formula-test.cpp.i
 .PHONY : Formula-test.cpp.i
 
 Formula-test.s: Formula-test.cpp.s
@@ -225,35 +225,8 @@ Formula-test.s: Formula-test.cpp.s
 
 # target to generate assembly for a file
 Formula-test.cpp.s:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/IndexProject_tst.dir/build.make tst/CMakeFiles/IndexProject_tst.dir/Formula-test.cpp.s
+	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/formula_test.dir/build.make tst/CMakeFiles/formula_test.dir/Formula-test.cpp.s
 .PHONY : Formula-test.cpp.s
-
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/IndexProject_tst.dir/build.make tst/CMakeFiles/IndexProject_tst.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/IndexProject_tst.dir/build.make tst/CMakeFiles/IndexProject_tst.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	cd /home/sa/Cpp/cmake_project_test/IndexProject/build && $(MAKE) $(MAKESILENT) -f tst/CMakeFiles/IndexProject_tst.dir/build.make tst/CMakeFiles/IndexProject_tst.dir/main.cpp.s
-.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -268,13 +241,10 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... IndexProject_tst"
+	@echo "... formula_test"
 	@echo "... Formula-test.o"
 	@echo "... Formula-test.i"
 	@echo "... Formula-test.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 .PHONY : help
 
 

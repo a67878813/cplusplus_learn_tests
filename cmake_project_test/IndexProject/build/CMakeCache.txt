@@ -391,6 +391,12 @@ benchmark_SOURCE_DIR:STATIC=/home/sa/Cpp/cmake_project_test/IndexProject/build/_
 benchmark_main_LIB_DEPENDS:STATIC=general;benchmark::benchmark;
 
 //Value Computed by CMake
+formula_test_BINARY_DIR:STATIC=/home/sa/Cpp/cmake_project_test/IndexProject/build/tst
+
+//Value Computed by CMake
+formula_test_SOURCE_DIR:STATIC=/home/sa/Cpp/cmake_project_test/IndexProject/tst
+
+//Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googletest-build/googlemock
 
 //Dependencies for the target
@@ -433,6 +439,18 @@ gtest_hide_internal_symbols:BOOL=OFF
 
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
+
+//Value Computed by CMake
+src_BINARY_DIR:STATIC=/home/sa/Cpp/cmake_project_test/IndexProject/build/src
+
+//Value Computed by CMake
+src_SOURCE_DIR:STATIC=/home/sa/Cpp/cmake_project_test/IndexProject/src
+
+//Value Computed by CMake
+tst_BINARY_DIR:STATIC=/home/sa/Cpp/cmake_project_test/IndexProject/build/tst
+
+//Value Computed by CMake
+tst_SOURCE_DIR:STATIC=/home/sa/Cpp/cmake_project_test/IndexProject/tst
 
 
 ########################
@@ -587,7 +605,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

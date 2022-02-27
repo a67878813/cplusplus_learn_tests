@@ -1,4 +1,4 @@
-HelloTest.BasicAssertions 3 0.000838495
+HelloTest.BasicAssertions 11 0.000447202
 benchmark 3 1.11562
 spec_arg 3 0.0137644
 benchmark_setup_teardown 3 0.0156851
@@ -69,4 +69,6 @@ commandlineflags_gtest 3 0.0010853
 statistics_gtest 3 0.000782078
 string_util_gtest 3 0.000790097
 perf_counters_gtest 3 0.000762802
+blaTest.test1 0 0
 ---
+blaTest.test1

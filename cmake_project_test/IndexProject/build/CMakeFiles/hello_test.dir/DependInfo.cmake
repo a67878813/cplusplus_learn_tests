@@ -4,12 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cc" "/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles/hello_test.dir/hello_test.cc.o"
+  "/home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cpp" "/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles/hello_test.dir/hello_test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../tst"
   "../src"
   "_deps/googletest-src/googletest/include"
   "_deps/googletest-src/googletest"
@@ -18,6 +19,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
+  "/home/sa/Cpp/cmake_project_test/IndexProject/build/src/CMakeFiles/src_lib.dir/DependInfo.cmake"
   "/home/sa/Cpp/cmake_project_test/IndexProject/build/_deps/googletest-build/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
   )
 
