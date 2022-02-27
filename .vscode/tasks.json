@@ -15,12 +15,29 @@
                 // "-v",
                 //"-I/usr/include/c++/11",
                 //"-I/usr/lib/gcc/x86_64-linux-gnu/11",
-
+                "-I/usr/local/lib/include", //google benchmark
+                "-I/usr/local/lib", //google benchmark
+                "-L/usr/local/lib",
+                "-I/home/sa/benchmark/src",
+                "-L/usr/local/share/doc/",
+                // "-L/usr/local/include",
+                "-lbenchmark",
+                "-lpthread",
                 "-o", // 指定输出文件名，os X和Linux下不加该参数则默认输出a.out，win下默认a.exe
                 "${fileDirname}/${fileBasenameNoExtension}.out", // 指定编译生成结果（.out文件和.out.dSYM文件夹）
                 // "-Wall", // 开启额外警告
+                // "-I/usr/include/c++/11",
+                // "-I/usr/include/x86_64-linux-gnu/c++/11",
+                // "-I/usr/lib/llvm-13/include/c++/v1",
+                // "-I/usr/local/include",
+                // "-L/usr/lib/x86_64-linux-gnu/",
+                // "-WI",
+                // "-rpath=/usr//x86_64-linux-gnu/",
+                "-v",
                 // "-stdlib=libc++", // 静态链接libc++，Linux下似乎会出错，出错的话删掉这行就行
-                // "-O3", // o3 youhua
+                // ubuntu nees
+                // sudo apt install libc++-dev, libunwind-dev
+                "-O3", // o3 youhua
                 "-std=c++2a", // 这里采用c++17标准（推荐），C语言改成"-std=c11"
                 "-fms-extensions",
                 // "-std=c11", // 这里采用c++17标准（推荐），C语言改成"-std=c11"

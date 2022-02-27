@@ -75,12 +75,12 @@ public:
         std::cout << "static funb B" << std::endl;
     };
 
-    void (A::*p1)(void);
-    using p1_ = void(A::*)(void);// tiny grammar difference
+    void (A::* p1)();
+    using p1_ = void (A::*)();// tiny grammar difference
 
 
-    void (*p2)(void);
-    using p2_ = void(*)(void);
+    void (*p2)();
+    using p2_ = void(*)();
 
 
 };
@@ -133,7 +133,23 @@ int main(){
 
 
 
-    using p = void (A::*)(void);
-    (a.*a.p1)  ();
+    // using p = void (A::*)(void);    //define type-alias
+    void (A::* p)();             //define p function pointer.
+    //did not declared p pointer on first statement.
+
+    (a.*a.p1)();
+    p = a.p1;
+    (a.*p)();
+
+
+    A* ab  = &a;
+    (ab->*p )();   // a.p1 ()
+
+    // p = a.p2;
+    void(*pp)();
+    pp = &A::funb;
+    pp();
+
+
     return 0;
 }
