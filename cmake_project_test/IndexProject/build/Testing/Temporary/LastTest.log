@@ -1,38 +1,55 @@
-Start testing: Feb 27 15:21 CST
+Start testing: Feb 27 16:23 CST
 ----------------------------------------------------------
-1/1 Testing: blaTest.test1
-1/1 Test: blaTest.test1
-Command: "/home/sa/Cpp/cmake_project_test/IndexProject/build/hello_test" "--gtest_filter=blaTest.test1" "--gtest_also_run_disabled_tests"
+1/2 Testing: SquareRootTest.PositiveNos
+1/2 Test: SquareRootTest.PositiveNos
+Command: "/home/sa/Cpp/cmake_project_test/IndexProject/build/hello_test" "--gtest_filter=SquareRootTest.PositiveNos" "--gtest_also_run_disabled_tests"
 Directory: /home/sa/Cpp/cmake_project_test/IndexProject/build
-"blaTest.test1" start time: Feb 27 15:21 CST
+"SquareRootTest.PositiveNos" start time: Feb 27 16:23 CST
 Output:
 ----------------------------------------------------------
-Note: Google Test filter = blaTest.test1
+Note: Google Test filter = SquareRootTest.PositiveNos
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 1 test from blaTest
-[ RUN      ] blaTest.test1
-/home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cpp:19: Failure
-Expected equality of these values:
-  Formula::bla(4)
-    Which is: 8
-  6
-[  FAILED  ] blaTest.test1 (0 ms)
-[----------] 1 test from blaTest (0 ms total)
+[----------] 1 test from SquareRootTest
+[ RUN      ] SquareRootTest.PositiveNos
+[       OK ] SquareRootTest.PositiveNos (0 ms)
+[----------] 1 test from SquareRootTest (0 ms total)
 
 [----------] Global test environment tear-down
 [==========] 1 test from 1 test suite ran. (0 ms total)
-[  PASSED  ] 0 tests.
-[  FAILED  ] 1 test, listed below:
-[  FAILED  ] blaTest.test1
-
- 1 FAILED TEST
+[  PASSED  ] 1 test.
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
-Test Failed.
-"blaTest.test1" end time: Feb 27 15:21 CST
-"blaTest.test1" time elapsed: 00:00:00
+Test Passed.
+"SquareRootTest.PositiveNos" end time: Feb 27 16:23 CST
+"SquareRootTest.PositiveNos" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Feb 27 15:21 CST
+2/2 Testing: SquareRootTest.NegtiveNos
+2/2 Test: SquareRootTest.NegtiveNos
+Command: "/home/sa/Cpp/cmake_project_test/IndexProject/build/hello_test" "--gtest_filter=SquareRootTest.NegtiveNos" "--gtest_also_run_disabled_tests"
+Directory: /home/sa/Cpp/cmake_project_test/IndexProject/build
+"SquareRootTest.NegtiveNos" start time: Feb 27 16:23 CST
+Output:
+----------------------------------------------------------
+Note: Google Test filter = SquareRootTest.NegtiveNos
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SquareRootTest
+[ RUN      ] SquareRootTest.NegtiveNos
+[       OK ] SquareRootTest.NegtiveNos (0 ms)
+[----------] 1 test from SquareRootTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"SquareRootTest.NegtiveNos" end time: Feb 27 16:23 CST
+"SquareRootTest.NegtiveNos" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Feb 27 16:23 CST

@@ -304,6 +304,33 @@ hello_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_test.dir/build.make CMakeFiles/hello_test.dir/hello_test.cpp.s
 .PHONY : hello_test.cpp.s
 
+sqrt.o: sqrt.cpp.o
+
+.PHONY : sqrt.o
+
+# target to build an object file
+sqrt.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_test.dir/build.make CMakeFiles/hello_test.dir/sqrt.cpp.o
+.PHONY : sqrt.cpp.o
+
+sqrt.i: sqrt.cpp.i
+
+.PHONY : sqrt.i
+
+# target to preprocess a source file
+sqrt.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_test.dir/build.make CMakeFiles/hello_test.dir/sqrt.cpp.i
+.PHONY : sqrt.cpp.i
+
+sqrt.s: sqrt.cpp.s
+
+.PHONY : sqrt.s
+
+# target to generate assembly for a file
+sqrt.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_test.dir/build.make CMakeFiles/hello_test.dir/sqrt.cpp.s
+.PHONY : sqrt.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -327,6 +354,9 @@ help:
 	@echo "... hello_test.o"
 	@echo "... hello_test.i"
 	@echo "... hello_test.s"
+	@echo "... sqrt.o"
+	@echo "... sqrt.i"
+	@echo "... sqrt.s"
 .PHONY : help
 
 

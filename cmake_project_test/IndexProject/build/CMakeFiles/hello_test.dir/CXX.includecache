@@ -7,14 +7,16 @@
 #IncludeRegexTransform: 
 
 /home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cpp
-src/Formula.h
-/home/sa/Cpp/cmake_project_test/IndexProject/src/Formula.h
 iostream
 -
 gtest/gtest.h
 /home/sa/Cpp/cmake_project_test/IndexProject/gtest/gtest.h
+sqrt.hpp
+/home/sa/Cpp/cmake_project_test/IndexProject/sqrt.hpp
 
-/home/sa/Cpp/cmake_project_test/IndexProject/src/Formula.h
+/home/sa/Cpp/cmake_project_test/IndexProject/sqrt.hpp
+math.h
+-
 
 _deps/googletest-src/googletest/include/gtest/gtest-death-test.h
 gtest/internal/gtest-death-test-internal.h

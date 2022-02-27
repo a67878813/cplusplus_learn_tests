@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cpp" "/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles/hello_test.dir/hello_test.cpp.o"
+  "/home/sa/Cpp/cmake_project_test/IndexProject/sqrt.cpp" "/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles/hello_test.dir/sqrt.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
@@ -12,6 +13,7 @@ set(CMAKE_CXX_COMPILER_ID "Clang")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../tst"
   "../src"
+  "../"
   "_deps/googletest-src/googletest/include"
   "_deps/googletest-src/googletest"
   )

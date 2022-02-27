@@ -70,5 +70,6 @@ statistics_gtest 3 0.000782078
 string_util_gtest 3 0.000790097
 perf_counters_gtest 3 0.000762802
 blaTest.test1 0 0
+SquareRootTest.PositiveNos 17 0.000156623
+SquareRootTest.NegtiveNos 18 0.000140172
 ---
-blaTest.test1

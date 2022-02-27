@@ -89,20 +89,35 @@ CMakeFiles/hello_test.dir/hello_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello_test.dir/hello_test.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sa/Cpp/cmake_project_test/IndexProject/hello_test.cpp -o CMakeFiles/hello_test.dir/hello_test.cpp.s
 
+CMakeFiles/hello_test.dir/sqrt.cpp.o: CMakeFiles/hello_test.dir/flags.make
+CMakeFiles/hello_test.dir/sqrt.cpp.o: ../sqrt.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/hello_test.dir/sqrt.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/hello_test.dir/sqrt.cpp.o -c /home/sa/Cpp/cmake_project_test/IndexProject/sqrt.cpp
+
+CMakeFiles/hello_test.dir/sqrt.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/hello_test.dir/sqrt.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sa/Cpp/cmake_project_test/IndexProject/sqrt.cpp > CMakeFiles/hello_test.dir/sqrt.cpp.i
+
+CMakeFiles/hello_test.dir/sqrt.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/hello_test.dir/sqrt.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sa/Cpp/cmake_project_test/IndexProject/sqrt.cpp -o CMakeFiles/hello_test.dir/sqrt.cpp.s
+
 # Object files for target hello_test
 hello_test_OBJECTS = \
-"CMakeFiles/hello_test.dir/hello_test.cpp.o"
+"CMakeFiles/hello_test.dir/hello_test.cpp.o" \
+"CMakeFiles/hello_test.dir/sqrt.cpp.o"
 
 # External object files for target hello_test
 hello_test_EXTERNAL_OBJECTS =
 
 hello_test: CMakeFiles/hello_test.dir/hello_test.cpp.o
+hello_test: CMakeFiles/hello_test.dir/sqrt.cpp.o
 hello_test: CMakeFiles/hello_test.dir/build.make
 hello_test: lib/libgtest_main.a
 hello_test: src/libsrc_lib.so
 hello_test: lib/libgtest.a
 hello_test: CMakeFiles/hello_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable hello_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sa/Cpp/cmake_project_test/IndexProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable hello_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hello_test.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -D TEST_TARGET=hello_test -D TEST_EXECUTABLE=/home/sa/Cpp/cmake_project_test/IndexProject/build/hello_test -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/sa/Cpp/cmake_project_test/IndexProject/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=hello_test_TESTS -D CTEST_FILE=/home/sa/Cpp/cmake_project_test/IndexProject/build/hello_test[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.18/Modules/GoogleTestAddTests.cmake
 

@@ -44,7 +44,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 #==================googletest end
 
-# ================googletest
+# ================googlebenchmark
 
 # # include(FetchContent)
 # FetchContent_Declare(
@@ -55,7 +55,7 @@ FetchContent_MakeAvailable(googletest)
 # set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 # FetchContent_MakeAvailable(benchmark)
 
-#==================googletest end
+#==================googlebenchmarkend
 
 
 
@@ -67,16 +67,49 @@ FetchContent_MakeAvailable(googletest)
 
 include_directories(${CMAKE_SOURCE_DIR}/tst)
 include_directories(${CMAKE_SOURCE_DIR}/src)
-
+include_directories(${CMAKE_SOURCE_DIR})
 add_subdirectory(src)
 add_subdirectory(tst)
+
+
 #cmake 添加subdirectory 才会解释子目录cmakelists？
 
 enable_testing()
 
+
+
+# aux_source_directory(<dir> <variable>)
+
+
+# set(MY_SRCLIST main.c test1.c test2.cpp)
+# add_executable(demo ${MY_SRCLIST})
+
+# file(GLOB_RECURSE ALL_SRCS *.cpp *.c)
+# add_executable(Demo ${ALL_SRCS})
+# 方法4
+
+# # 查找当前目录下的所有源文件，并将名称保存到 DIR_SRCS 变量
+# aux_source_directory(. DIR_SRCS)
+# # 指定生成目标
+# add_executable(Demo ${DIR_SRCS})
+
+
+
+# 5.方法5，使用add_library，这个可以和方法6可以做个对比
+
+# add_library(Demo test1.c test2.cpp)
+# #或者
+# #add_library(${PROJECT_NAME}   test1.c test2.cpp)
+ 
+# add_executable(Demo main.c)
+# #或者
+# #add_executable(Demo main.cpp)
+# #或者
+# #add_executable(${PROJECT_NAME} main.cpp)
+
 add_executable(
     hello_test
-    hello_test.cpp
+    hello_test.cpp sqrt.cpp 
 )
 # add_executable(
 #     formula_test
@@ -84,12 +117,16 @@ add_executable(
 # )
 target_link_libraries(
     hello_test
-    gtest_main
+    gtest_main pthread
 )
 target_link_libraries(
     hello_test
     src_lib
 )
+# target_link_libraries(
+#     hello_test
+#     sqrt.cpp 
+# )
 # target_link_libraries(
 #     formula_test PRIVATE gtest_main
 # )

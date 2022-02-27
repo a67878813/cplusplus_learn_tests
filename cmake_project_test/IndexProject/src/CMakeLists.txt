@@ -11,7 +11,7 @@ file(GLOB_RECURSE SOURCES LIST_DIRECTORIES true *.h *.hpp *.cpp *.cc)
 set(SOURCES ${SOURCES})
 # add_executable(${BINARY}_run ${SOURCES})
 # 为了让单元测试的时候src下的代码能被作为静态链接库使用
-#构建静态链接库 add_library
+#构建静态链接库 static dongtai SHARED add_library
 add_library(src_lib SHARED Formula.cpp Formula.h )
 
 

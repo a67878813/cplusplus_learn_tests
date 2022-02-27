@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = -Dsrc_lib_EXPORTS
 
-CXX_INCLUDES = -I/home/sa/Cpp/cmake_project_test/IndexProject/tst -I/home/sa/Cpp/cmake_project_test/IndexProject/src
+CXX_INCLUDES = -I/home/sa/Cpp/cmake_project_test/IndexProject/tst -I/home/sa/Cpp/cmake_project_test/IndexProject/src -I/home/sa/Cpp/cmake_project_test/IndexProject
 
 CXX_FLAGS = -O3 -DNDEBUG -fPIC -std=gnu++20
 

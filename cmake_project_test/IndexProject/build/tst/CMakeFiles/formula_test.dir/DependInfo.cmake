@@ -12,6 +12,7 @@ set(CMAKE_CXX_COMPILER_ID "Clang")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../tst"
   "../src"
+  "../"
   "_deps/googletest-src/googletest/include"
   "_deps/googletest-src/googletest"
   )
