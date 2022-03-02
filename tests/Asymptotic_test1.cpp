@@ -176,7 +176,7 @@ void cubic2(int n){ //O(n^3)
 // Ignore constants
 // n^3 +n^2 =>O(n^3)
 
-void f(int n){ //O(n^6)
+void f0(int n){ //O(n^6)
     int cnt=0;
     for (int i=0;i<n*n;++i){
         for (int j=0;j<n;++j){
@@ -188,7 +188,7 @@ void f(int n){ //O(n^6)
 }
 
 
-void f1(int n){ //O(n^6)
+void f1(int n){ //O(n^6)      O(1) memory
     int cnt=0;
     for (int i=0;i<n*n;++i){
         for (int j=0;j<n;++j){
@@ -232,6 +232,156 @@ void f4(int n, int m ){ //O(n m  +n^3)
 //other worse Families
 //O(n^n)
 //O(!n )
+int* p = new int[1000];
+// time order O() of code is upper bound.
+
+int* f_(int n){ //total O(n)memory,O(n^2)time
+    //this line: O(n)time and O(n) memory
+    int *p = new int[n]{};    // 
+
+    for (int i =0;i<n;++i) //O(n))time
+        p[i]=i;
+
+    int sum=0; //O(n^2) time
+    for(int i=0;i<n;++i){
+        for(int j=0;j<n;++j){
+            sum += p[i];
+        }
+    }
+    return p;
+}
+int* f3B(int n){  // O(n) time/memory
+    return new int[n]{};
+}
+
+void f3A(int n) {
+    //O(n^2) time but still O(n) memory
+    for (int i =0;i<n;++i){
+        int* p  = f3B(n);    //O n memory 
+        delete [] p;            // delete O n memory 
+    }
+}
+int * f4B(int n){
+    return new int[n] {};
+}
+void f4A(int n){
+    // O(n^2) time & memory
+    for (int i=0;i<n;++i){
+        int*p = f4B(n);
+        //we accumulate memory
+    }
+}
+void f5(int n){   //O(n)  time memory
+    int* p1= new int[10 * n]{};
+    int* p2 = new int [20*n]{};
+}
+void f6(int n){   //O(n+m)  time memory
+    int* p1= new int[10 * n]{};
+    int* p2 = new int [20*m]{};
+}
+
+int f7B(int *arr, int n ){  // O n time  O 1 memory
+    //O(1)  excluding parameters with reference 
+    int sum =0;
+    for  (int i=0;i<n; ++i)
+        sum += arr[i];
+    return sum;
+}
+void f7A(int n ){
+    int *x  = new int[n];// O n memory 
+    f7B(x,n);   // O 1 memoryj
+}
+
+int f8B(vector<int>& v, int f) {
+    // O n time and O 1 memory 
+    int sum =0;
+    for (int i=0;i<v.size();++i)  // O 1 memory , O n time
+        sum += v[i]*f;
+    return sum;
+}
+void f8A(int n){
+    vector<int> v(n,1); // vector of n numbers , O n memory ,O n time
+            // n,  length
+            // 1, default value
+
+    /* 
+    vector(size_type __n, const value_type& __value,
+	     const allocator_type& __a = allocator_type())
+      : _Base(_S_check_init_len(__n, __a), __a)
+      { _M_fill_initialize(__n, __value); }
+    */
+    for (int i=0;i<n;++i) // O n^2 time , 
+        f8B(v,i);
+
+}
+
+int f9B(vector<int> v, int f) {
+    // O n time and O 1 memory 
+    int sum =0;
+    for (int i=0;i<v.size();++i)  // O n memory , O n time
+        sum += v[i]*f;
+    return sum;
+}
+
+void f9A(int n){
+    vector<int> v(n,1); // vector of n numbers , O n memory, O n time
+            // n,  length
+            // 1, default value
+
+    for (int i=0;i<n;++i) // O n^2 time ,  O n memory
+        f8B(v,i);
+}
+
+int factorial1(int n){
+    // O n time and O 1 memory
+    int res = 1;
+    for( int i =1; i<= n;++i)
+        res *= i;
+    return res;
+
+}
+int factorial2(int n){
+    // O n time and O n memory
+    if(n<=1)
+        return 1;
+    int subres = factorial1(n-1);
+    return n * subres;  //recursion
+    // If we have N recursive calls, then the variables in each call remains in memory
+    //  E.g.  we will have N copies of subres variables 
+    // So O(n) memory
+    // we call it auxiliary space ( extra temporary space used by an algorithm)
+}
+
+void f10(int n){// total O n^2 memory
+    if(n<=0)
+        return ;
+    int *p = new int[n];   // O n memory O n time
+    f10(n-1);  // recursio  O n^2 memory O n^2 time
+    delete[] p; //delete O n memory
+}
+void f11(int n){// total O n memory
+    if(n<=0)
+        return ;
+    int *p = new int[n];   // O n memory O n time
+    delete[] p; //delete O n memory
+               // memory O1 
+    f10(n-1);  // recursion O 1 memory O n^2 time
+}
+/* 
+As we have a few specific areas with memory creation, we only look to them
+
+Be careful from loops with function calls
+
+Recursive functions 
+    What is the actual O() memory before the call
+        if cosntant, then N recursive calls need O(n)
+        if no, assume m , the N recursive calls need O(nm)   
+        // ## before the recursive call there is O(m) memory . then a recursive calls would make O(nm)
+        // ## and the model of that recursive calls are always making some factor to be multiplied by your memory complexity
+        // ## in best case , it could be just N for a recursive call
+        // ## and the worst case, it would represented number of memory available before the recursive call.
+
+*/
 
 int main(){
 
