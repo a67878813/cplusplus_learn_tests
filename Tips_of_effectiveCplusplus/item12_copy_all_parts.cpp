@@ -19,6 +19,7 @@ public:
     PriorityCustomer& operator=(const PriorityCustomer& rhs);
 private:
     int priority;
+    int init();//some common processes.
 };
 
 PriorityCustomer::PriorityCustomer(const PriorityCustomer& rhs)
@@ -39,13 +40,15 @@ PriorityCustomer::PriorityCustomer(const PriorityCustomer& rhs)
     priority(rhs.priority)
     {
         logCall("right version of PriorityCustomer copy constructor");
-    }
+        init();
+    } 
 PriorityCustomer&
 PriorityCustomer::operator=(const PriorityCustomer &rhs)
 {
     logCall("right version of PriorityCustomer copy assignment operator");
     Customer::operator=(rhs);  // call base class's operator=
     priority=rhs.priority;
+    init();
     return *this;    //reference type usually  return *this;
 }
 
