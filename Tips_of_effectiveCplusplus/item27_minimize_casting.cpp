@@ -18,6 +18,22 @@ public:
 
 
 
+class Window2{
+public:
+    virtual void blink(){}
+
+};
+
+class SpecialWindow2:public Window2{
+public:
+    void blink() override {};//override incase of undefined in base class
+};
+
+
+
+
+
+
 
 int main(){
 
@@ -61,6 +77,14 @@ for(VPSW::iterator iter = winPtrs2.begin();
 //这种做法使无法在同一个容器内存储指针"指向所有可能的而各种Window派生类“
 //如果要处理多种窗口类型，可能需要多个容器，他们都必须具备类型安全性
 
+
+//1
+typedef std::vector<std::shared_ptr<Window2> > VPW2;
+VPW2 winPtrs3;
+for( VPW2::iterator iter = winPtrs3.begin();
+    iter!= winPtrs3.end();
+    ++iter)
+    (*iter)->blink();   //there is no dynamic_cast
 
 
 
