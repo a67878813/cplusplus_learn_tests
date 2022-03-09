@@ -1,62 +1,75 @@
 // cast undermine c++ 's type system.
 
 #include <iostream>
-//c fashion cast
-typedef    int32_t  T;
-
-
-
-
-const int64_t  expression2  () const {
-    
-    return 5;
-};
-
-int64_t expression;
-
-
-
-class Widget{
-    public:
-    explicit Widget(int size);
-};
-
-void doSomeWork(const Widget&w);
-
+#include <memory>
+#include <vector>
+#include <iterator>
 
 
 class Window{
 public:
-    virtual void onResize();
+    virtual ~Window() = default; //the easiest way of makeing the hierarchy polymorphic is to 
+            //ake the destructor of the base calss  VIRTUAL
 };
-
 class SpecialWindow: public Window{
 public:
-    virtual void onResize(){
-        //static_cast<Window>(*this).onResize();//wronw , static_cast creat a copy of *this.
-        Window::onResize();
-    };
+    void blink();
 };
-
-
-
-
 
 
 
 
 int main(){
 
-    // int expression;
 
-    (T)expression;
-    T(expression);//?
+// do not do this
 
-
-
-
+typedef
+std::vector< std::shared_ptr<Window> > VPW;    
+//base class pointer 's vector_container
 
 
+
+VPW winPtrs;
+for(VPW::iterator iter = winPtrs.begin();
+    iter != winPtrs.end(); 
+    ++iter)
+    {
+    
+    if( SpecialWindow*  psw = dynamic_cast<SpecialWindow*>(iter->get() ) )  
+                                                        // shared_ptr::get  return the stored pointer
+                                                        // is  shared_ptr<Windos>
+                                                        // aka Window*   (base class's pointer)
+        
+        psw->blink();
+        
+    };
+//=============================================
+
+//here is better
+typedef std::vector<std::shared_ptr<SpecialWindow> > VPSW;
+VPSW winPtrs2;
+for(VPSW::iterator iter = winPtrs2.begin();
+    iter != winPtrs2.end();
+    ++iter){
+        (*iter)->blink();
+        // *iter     is  shared_ptr<SpecialWindow>'s 
+                        //SpecialWindow* 
+        //call SpecialWindow->blink()
+    }
+
+//这种做法使无法在同一个容器内存储指针"指向所有可能的而各种Window派生类“
+//如果要处理多种窗口类型，可能需要多个容器，他们都必须具备类型安全性
+
+
+
+
+
+
+};
+
+
+/* 
     //c++_stype casts
     const_cast<T>(expression2(5));  // cast away the constness
 
@@ -67,9 +80,4 @@ int main(){
     reinterpret_cast<T>(expression);   // low level cast
 
 
-    static_cast<T>(expression); // implicit conversions
-
-doSomeWork(Widget(15));
-doSomeWork(static_cast<Widget>(15) );
-
-};
+    static_cast<T>(expression); // implicit conversions */
