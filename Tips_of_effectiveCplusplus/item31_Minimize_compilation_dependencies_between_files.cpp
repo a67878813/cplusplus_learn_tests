@@ -21,8 +21,6 @@ private:
 };
  */
 
-
-
 //Handle class's example
 class Person{
 public:
