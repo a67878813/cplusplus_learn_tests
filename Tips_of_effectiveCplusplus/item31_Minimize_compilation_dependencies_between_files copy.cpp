@@ -34,7 +34,7 @@ public:
     std::string name() const;
     std::string birthDate() const;
     std::string address() const;
-private:
+private: 
     std::string theName;
     Date theBirthDate;
     Address theAddress;
@@ -84,3 +84,17 @@ std::cout << pp->name()
     << std::endl;
 //when pp leaves this area, it will be deleted automatically
 };
+
+
+//Extra Costs:
+//every function is virtual, so it must have indirect jump cost.
+//derived obj must have vptr(virtual table pointer),that will increase obj's size.
+//
+
+
+
+//Tips
+//1.Using Handle classes & Interface classes to achieve low costs with clients
+// when your code change frequently.
+//2. But when there are significant difference of speed or size , should use Concrete classes.
+//3. Header file should be as full and declaration-only forms.

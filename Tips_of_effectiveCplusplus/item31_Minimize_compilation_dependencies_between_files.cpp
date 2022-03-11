@@ -59,20 +59,24 @@ std::string Person::name() const
 }
 
 
-<<<<<<< HEAD
 // another Handle class
 //Person becomes abstract base class (interface class)
 //  which describs derived classes' interfaces.
 // It is usuallyhas no member variable & constructor
 // It only has virtual distructor & pure virtual functions which describ whole interface.
-=======
->>>>>>> 2fd4dba5e24f613dabf9fdb7b27594d19ea09e96
 
 
 int main()
-{
+
     int x;
     Person p();   //in java , it actuially 
                 //Person* p;
 
 };
+
+
+//Extra Costs:
+//1. member function must get obj.data through implementation pointer.
+//2. implementation pointer adds memory consume
+//3. implementation pointer must be initiallized.
+//4. extra expense of alloc &release & bad_alloc.
