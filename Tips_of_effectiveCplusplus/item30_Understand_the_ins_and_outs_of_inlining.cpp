@@ -14,11 +14,11 @@ private:
 
 class Derived: public Base{
 public:
-    Derived(){}//
+    Derived(){}//implicit inline
     /* 
     
     */
-
+    inline int test(){};
 private:
     std::string dm1,dm2,dm3;
 };
