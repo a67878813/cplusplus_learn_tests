@@ -47,8 +47,48 @@ public:
     explicit GameCharacter3(HealthCalcFunc hcf = defaultHealthCalc)
     : healthFunc(hcf)
     {}
-    int healthValue() const 
-    {return healthFunc(*this);}
+    int healthValue() const {
+        return healthFunc(*this);}
+    int setHealthCalculator(HealthCalcFunc hcf){return 0;}
+
+
+private:
+    HealthCalcFunc healthFunc;
+    friend int loseHealthQuickly(const GameCharacter3&);//when it need this class's non-public parts.
+    friend int loseHealthSlowly(const GameCharacter3&);
+};
+
+
+
+//============
+//derived class of GameCharacter3
+class EvilBadGuy: public GameCharacter3{
+public:
+    explicit EvilBadGuy(HealthCalcFunc hcf = defaultHealthCalc)
+    : GameCharacter3(hcf)
+    {}
+};
+int loseHealthQuickly(const GameCharacter3&);
+int loseHealthSlowly(const GameCharacter3&);
+
+
+
+#include<tr1/functional>
+//==================================
+
+// tr1::function
+class GameCharacter4;
+int defaultHealthCalc4(const GameCharacter4& gc);
+class GameCharacter4{
+public:
+    //HealthCalcFunc could be any callable entity,
+    //return any type competible with int
+    typedef std::tr1::function<int (const GameCharacter4&) >  HealthCalcFunc;
+    
+    explicit GameCharacter4(HealthCalcFunc hcf = defaultHealthCalc4)
+    : healthFunc(hcf){}
+
+    int healthValue()  const {return healthFunc( *this);}
 
 private:
     HealthCalcFunc healthFunc;
@@ -56,4 +96,31 @@ private:
 
 
 
-//============
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main(){
+
+
+EvilBadGuy ebg1(loseHealthQuickly);
+EvilBadGuy ebg2(loseHealthSlowly);//1.  differect instance could have others calculate func.
+ebg1.setHealthCalculator(loseHealthSlowly);
+//2. it can be changed during running.
+
+//this methord could deficit class's encapsulation.
+
+
+};
