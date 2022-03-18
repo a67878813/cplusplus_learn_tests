@@ -83,19 +83,64 @@ class GameCharacter4{
 public:
     //HealthCalcFunc could be any callable entity,
     //return any type competible with int
-    typedef std::tr1::function<int (const GameCharacter4&) >  HealthCalcFunc;
-    
-    explicit GameCharacter4(HealthCalcFunc hcf = defaultHealthCalc4)
+    typedef std::tr1::function
+        <int (const GameCharacter4&) >  HealthCalcFunc4;
+    // tr1::function's instantiations 's target signature
+    //this target signature means:
+            // receive a reference pointed to GameCharacter4, return int.
+        //                                           here  is typedef 
+                                                    //like normol func-pointer
+    // and this Type 's obj can hold any compatible callable entity.
+    // Compatible means that callable entity's paragram could be implicitly transform to const GameCharacter4&,
+    // and its returning type could be transformd either.
+    explicit GameCharacter4(HealthCalcFunc4 hcf = defaultHealthCalc4)
     : healthFunc(hcf){}
+
+    int set_healthFunc(HealthCalcFunc4 hcf){
+        healthFunc = hcf;
+        return 0;
+    }
 
     int healthValue()  const {return healthFunc( *this);}
 
+
 private:
-    HealthCalcFunc healthFunc;
+    HealthCalcFunc4 healthFunc;
+};
+
+class EvilBadGuy4: public GameCharacter4{
+public:
+    explicit EvilBadGuy4(HealthCalcFunc4 hcf = defaultHealthCalc4    )
+    : GameCharacter4(hcf)
+    {}
+
 };
 
 
 
+short calcHealth(const GameCharacter4&);  // non-int returning type
+
+//fun_obj designed for calculate health
+struct HealthCalculator_4{
+    int operator()(const GameCharacter4&) const
+    {return 0;}
+};
+
+
+class GameLevel{
+public:
+    float health(const GameCharacter&) const;// mem func for calcu health
+
+};
+
+
+
+class EyeCandyCharacter: public GameCharacter4{
+public:
+    explicit EyeCandyCharacter(HealthCalcFunc4 hcf = defaultHealthCalc4    )
+    : GameCharacter4(hcf)
+    {}
+};
 
 
 
@@ -122,5 +167,20 @@ ebg1.setHealthCalculator(loseHealthSlowly);
 
 //this methord could deficit class's encapsulation.
 
+GameCharacter4 cc_4;
+
+
+
+
+EvilBadGuy4 ebg3_1(calcHealth); // character1, use func 
+EyeCandyCharacter ecc1 ((HealthCalculator_4())); 
+EvilBadGuy4 ebg2_0(
+    std::tr1::bind(&GameLevel::health,
+                currentLevel,
+                _1)
+);
+
+
+return 0;
 
 };
