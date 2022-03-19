@@ -25,4 +25,39 @@ class Circle:public Shape{
 
 };
 
+//==============
+
+//NVI
+class Shape1{
+    public:
+    enum ShapeColor {Red, Green,Blue };
+    void draw(ShapeColor color = Red) const { // non-virtual 
+        doDraw(color);   // call virtual
+    }
+private:
+    virtual void doDraw(ShapeColor color) const =0;   //real work
+};
+
+class Rectangle1 : public Shape1{
+    public:
+    private:
+    virtual void doDraw(ShapeColor color) const; // do not define default value
+}
+
+
+int main(){
+Shape* ps;
+Shape* pc= new Circle;
+Shape* pr = new Rectangle;
+
+ps = pc;
+ps = pr;
+pc->draw(Shape::Red);  // call Circle::draw(Shape::Red)
+pr->draw(Shape::Red); // call Rectangle::draw(Shape::Red)
+
+pr->draw(); // cal Rectangle::draw(Shape::Red)    //pr static type is Shape* , ti's default value coms from Shape.
+
+
+};
+
 
