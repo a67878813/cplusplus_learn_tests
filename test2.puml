@@ -1,0 +1,34 @@
+@startuml
+
+interface ListIterator
+
+class Widget{
+    int size()
+
+}
+
+' abstract class AbstractCollection{
+'     {abstract} +int size()
+'     {abstract} +Iterator<E> iterator()
+' }
+
+
+class AbstractCollection{
+    +int size()
+    {abstract} +Iterator<E> iterator()
+}
+
+
+
+
+Widget <|.. AbstractCollection
+
+Widget *-- ListIterator
+
+
+Class21 #-- Class22
+Class23 x-- Class24
+Class25 }-- Class26
+Class27 +-- Class28
+Class29 ^-- Class30
+@enduml
