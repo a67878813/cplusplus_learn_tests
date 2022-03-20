@@ -1,11 +1,11 @@
 @startuml
 
-interface ListIterator
+' interface ListIterator
 
-class Widget{
-    int size()
+' class Widget{
+'     int size()
 
-}
+' }
 
 ' abstract class AbstractCollection{
 '     {abstract} +int size()
@@ -13,22 +13,108 @@ class Widget{
 ' }
 
 
-class AbstractCollection{
-    +int size()
-    {abstract} +Iterator<E> iterator()
+' class AbstractCollection{
+'     +int size()
+'     {abstract} +Iterator<E> iterator()
+' }
+
+class basic_ios <<general>> {
+    {abstract} virtual fffff
+    {static} size_t time_of_create
+    ..
+    -std::string fileName()
+    {field} File: equals() 
+    {method} #protected 
+    {method} -private  
+    ==
+    {method} ~ package private 
+    --
+    {method} + public 
+    End of class
+}
+' note left  : asdasdasdadasdas
+
+note left of basic_ios::fileName
+sdfsdfsd
+end note
+
+
+' - private 
+' # protected 
+' ~ package private 
+' + public 
+
+
+class basic_istream{
+    .. Simple Getter ..
+    + getName()
+    +getAddress()
+    ..SomeSetter ..
+    + setName()
+
+    -- private data  --
+    int age 
+
+    -- encrypted --
+    String password
+    
 }
 
+class baic_ostream{}
+
+class basic_iostream{}
+
+basic_ios <|-- baic_ostream: {virtual}
+basic_ios <|-- basic_istream :{virtual}
+baic_ostream <|-- basic_iostream
+basic_istream <|-- basic_iostream
+
+basic_iostream - sdff :> dfdf
+
+' <|--
+' *--
+' o--
+' <|..
+' *..
+' o..
+
+
+' Widget <|.. AbstractCollection
+
+' Widget *-- ListIterator
+
+
+' Class21 #-- Class22
+' Class23 x-- Class24
+' Class25 }-- Class26
+' Class27 +-- Class28
+' Class29 ^-- Class30
+
+
+@enduml
 
 
 
-Widget <|.. AbstractCollection
+@startuml
+class IPerson{
+    {abstract} ~IPerson()
+    {abstract} std::string name() = 0
+    {abstract} std::string birthDate() const = 0;
 
-Widget *-- ListIterator
+}
 
+class CPerson{
 
-Class21 #-- Class22
-Class23 x-- Class24
-Class25 }-- Class26
-Class27 +-- Class28
-Class29 ^-- Class30
+}
+class PersonInfo{
+    +PersonInfo(DatabaseID pid);
+    {abstract} ~PersonInfo();
+    +const char* theName() const;
+    +const char* theBirthDate() const;
+
+    - const char* valueDelimOpen() const
+    - const char* valueDelimClose() const
+}
+IPerson <|-- CPerson
+
 @enduml
