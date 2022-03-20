@@ -125,3 +125,20 @@ IPerson <|-- CPerson
 PersonInfo <|.. CPerson :(private)
 
 @enduml
+
+@startuml
+
+interface  Widget{
+    +Widget();
+    +virtual ~Widget();
+    +virtual std::size_t size() const;
+    +virtual void normalize();
+    +void swap(Widget& other);
+}
+
+entity doProcessing{ 
+    Widget& w
+}
+
+
+@enduml
