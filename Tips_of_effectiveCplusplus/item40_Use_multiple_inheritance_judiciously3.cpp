@@ -26,6 +26,8 @@ std::tr1::shared_ptr<IPerson> pp (makePerson(id));
 
 #include <cstring>
 
+#pragma region PersonInfo/* here is note */
+
 class PersonInfo{
 public:
     explicit PersonInfo(DatabaseID pid);
@@ -53,9 +55,34 @@ const char* PersonInfo::theName() const{
     std::strcat(value, valueDelimClose());
     return value;
 }
+#pragma endregion/* sdsdfsdf */
 
+class CPerson: 
+    public IPerson,
+    private PersonInfo
+{
+public:
+    explicit CPerson(DatabaseID pid): PersonInfo(pid){}
+    virtual std::string name() const{
+        return PersonInfo::theName();
+    }
 
+    virtual std::string birthDate() const{
+        return PersonInfo::theBirthDate();
+    }
 
+    const std::string theName_str() const{
+        // std::string str(PersonInfo::theName());
+        std::string str;
+        str.assign(PersonInfo::theName(),
+            strlen(PersonInfo::theName()));
+        return str;
+    }
+private:
+    const char* valueDelimOpen() const {return "";}
+    const char* valueDelimClose() const {return "";}
+
+};
 
 int main(){
 

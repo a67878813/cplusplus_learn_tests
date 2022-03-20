@@ -96,7 +96,7 @@ basic_iostream - sdff :> dfdf
 
 
 @startuml
-class IPerson{
+interface  IPerson{
     {abstract} ~IPerson()
     {abstract} std::string name() = 0
     {abstract} std::string birthDate() const = 0;
@@ -104,6 +104,12 @@ class IPerson{
 }
 
 class CPerson{
+    +CPercon()
+    +std::string name() const 
+    +std::string birthDate() const 
+    --
+    -const char* valueDelimOpen() const 
+    -const char* valueDelimClose() const
 
 }
 class PersonInfo{
@@ -111,10 +117,11 @@ class PersonInfo{
     {abstract} ~PersonInfo();
     +const char* theName() const;
     +const char* theBirthDate() const;
-
+    --
     - const char* valueDelimOpen() const
     - const char* valueDelimClose() const
 }
 IPerson <|-- CPerson
+PersonInfo <|.. CPerson :(private)
 
 @enduml
