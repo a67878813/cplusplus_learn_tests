@@ -142,3 +142,44 @@ entity doProcessing{
 
 
 @enduml
+
+@startuml
+
+interface MsgSender <<typename Company>>{
+    +sendClear(const MsgInfo& info)
+    +sendSecret(const MsgInfo& info)
+}
+
+class CompanyA{
+    +sendCleartext
+    +sendEncrypted
+}
+
+class CompanyB{
+    +sendCleartext
+    +sendEncrypted
+}
+
+class MsgInfo{}
+
+MsgSender <|.. CompanyA
+MsgSender <|.. CompanyB
+CompanyA <|-- MsgInfo
+CompanyB <|-- MsgInfo
+
+@enduml
+
+
+
+@startuml
+
+SquareMatrixBase2 <|-- SquareMatrix2
+
+
+@enduml 
+
+@startuml
+Top <|-- Middle
+Middle <|-- Bottom
+
+@enduml
