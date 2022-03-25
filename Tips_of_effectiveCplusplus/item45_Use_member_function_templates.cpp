@@ -86,3 +86,11 @@ SmartPtr<const Top> pct2 = pt1;    // S-Top to const Top
     return 0 ;
 
 };
+
+
+
+//tips:
+    // 
+
+    // if using member templates to generic copy c'tor or generic assignment 
+    // you need define normol copy c'tor and copy assignment
