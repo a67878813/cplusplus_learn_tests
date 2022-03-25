@@ -73,5 +73,5 @@ int main(){
 
 //Tips
 
-// if we need class template related function supporting all parameters implicitly type transform,
+// if we need class template related function supporting all parameters implicitly type conversion,
 // wee need declare & define class template's inner friend function.

@@ -183,3 +183,42 @@ Top <|-- Middle
 Middle <|-- Bottom
 
 @enduml
+
+@startuml
+
+class MY_class{
+    +class iterator
+    +   typedef XXXXX  iterator_category 
+}
+interface  iterator{
+    + typedef XXX iterator_category
+}
+
+interface std::iterator_traits {
+    typedef typename IterT::iterator_category iterator_category;
+}
+
+std::iterator_traits <|-- iterator
+
+
+class advance{
+    +void doAdvance(IterT& DistT, std::random_access_iterator_tag)
+    +void doAdvance(IterT& DistT, std::bidirectional_iterator_tag)
+    +void doAdvance(IterT& DistT, std::input_iterator_tag)
+}
+
+class doAdvancestd::iter1 {
+
+}
+
+class doAdvancestd::iter2 {
+
+}
+class doAdvancestd::iter3 {
+
+}
+
+doAdvancestd::iter3  <|--advance
+doAdvancestd::iter2  <|--advance
+doAdvancestd::iter1  <|--advance
+@enduml 
