@@ -120,6 +120,7 @@ int main(){
 
     //iterator
     //c++ 17 +
+    // std::tuple_element<0,std::pair<const std::basic_string<char>, CityRecord>  > ::type
     for (auto&[name , city] : cityMap )
     {
         std::cout << name << "\n Population:  " << city.Population << std::endl;
