@@ -46,3 +46,44 @@ void reverse(char s[])
             s[j]= c;
         }
 }
+
+
+
+/* 
+un overloaded  
+.   .*   ::  ?:
+
+new  delete sizeof  typeid
+
+static_cast   dynamic_cast   const_cast   reinterpret_cast
+
+
+
+
+
+
+
+*/
+
+
+/* 
+overloadable
+
+operator new        operator delete
+operator new[]          operator delete[]
+
++   -   *   /   %   ^   &   |   ~
+
+!   =   <   >   +=  -=  *=  /=  %=
+
+^=  &=  |=  <<  >>  <<= >>= ==  !=
+
+<=  >=  &&  ||  ++  --  ,   ->* ->
+
+()  []
+
+
+
+
+
+*/
