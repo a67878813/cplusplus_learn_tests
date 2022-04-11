@@ -1,5 +1,6 @@
 #include <string>
 #include <list>
+#include <memory>
 
 class Image{
     public:
@@ -32,10 +33,16 @@ private:
 std::string theName;
 std::string theAddress;
 std::list<PhoneNumber > thePhones;
-Image* theImage;
-AudioClip* theAudioClip;
+const Image* theImage;
+const AudioClip* theAudioClip;
 void cleanup(); // conmmon (clean up)
+Image* initImage(const std::string& imageFileName);
+AudioClip* initAuioClip(const std::string& audioClipFileName);
+//this methord will distribute ctor's function to some funcs that could be disturb maintainer.
 
+// or =========  this will avoid mem_leak
+std::shared_ptr<Image> _theImage; 
+std::shared_ptr<AudioClip> _theAudioClip; //constructed  means automatic destructed.
 };
 
 BookEntry::BookEntry( 
@@ -54,7 +61,7 @@ BookEntry::BookEntry(
     It is constructor's responsibility that catch exceptions to avoid memry leak
     
     */                
-        theAddress(address),
+    theAddress(address),
         // theImage(nullptr), 
         // theAudioClip(nullptr)
         /* theImage( imageFileName != ""
@@ -63,7 +70,10 @@ BookEntry::BookEntry(
         theAudioClip(audioClipFileName != ""
                 ? new AudioClip(audioClipFileName)
                 : 0)
- */{
+ */
+    theImage(initImage(imageFileName)),
+    theAudioClip(initAuioClip(audioClipFileName))
+{
 
     try{
 
@@ -105,6 +115,35 @@ void BookEntry::cleanup(){
     delete theImage;
     delete theAudioClip;
 }
+
+// first init obj will not leak memory
+Image* BookEntry::initImage(const std::string& imageFileName)
+{
+    if( imageFileName != "")  return new Image(imageFileName);
+    else return 0;
+}
+
+// second  init obj, will delete first obj, if throw exception.
+AudioClip* BookEntry::initAuioClip(const std::string& audioClipFileName)
+{
+    try{
+        if (audioClipFileName != ""){
+            return new AudioClip(audioClipFileName);
+        }
+        else return 0;
+
+    }
+    catch(...){
+        delete theImage;
+        throw;
+
+    }
+}
+
+
+
+
+
 
 void testBookEntryClass()
 {
