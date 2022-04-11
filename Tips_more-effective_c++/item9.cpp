@@ -70,3 +70,35 @@ void processAdoptions(std::istream& dataSource)
     }
 };
 
+
+
+void displayInfo(const Information& info)
+{
+    WINDOW_HANDLE w(createWindow());
+    //display info in window corresponding to w;
+    destroyWindow(w);
+}
+
+class WindowHandle{
+public:
+    using WINDOW_HANDLE = size_t;
+    WindowHandle(WINDOW_HANDLE handle) : w(handle) {}
+    ~WindowHandle() {destroyWindow(w);};
+
+    operator WINDOW_HANDLE() {return w;}  // implicit trans  WindowHandle ->- WINDOW_HANDLE
+
+private:
+    WINDOW_HANDLE w;
+
+    // disble multiple WINDOW_HANDLE
+    WindowHandle(const WindowHandle&); // disable copy
+    WindowHandle& operator=(const WindowHandle&); //disable assignment
+
+};
+
+void displayInfo_(const Information& info)
+{
+    WindowHandle w(createWindow());
+
+    // display window corresponding to w;
+}
