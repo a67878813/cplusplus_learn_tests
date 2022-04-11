@@ -34,6 +34,7 @@ std::string theAddress;
 std::list<PhoneNumber > thePhones;
 Image* theImage;
 AudioClip* theAudioClip;
+void cleanup(); // conmmon (clean up)
 
 };
 
@@ -50,37 +51,44 @@ BookEntry::BookEntry(
     datamenbrer will be c'tored before BookEntry's ctor.
     when BookEntry 's c'tor throw exception , data members will be d'tor automatically.
 
-    It is constructor's responsibility to catch exceptions to avoid memry leak
+    It is constructor's responsibility that catch exceptions to avoid memry leak
     
     */                
         theAddress(address),
-        theImage(nullptr), 
-        theAudioClip(nullptr)
-{
+        // theImage(nullptr), 
+        // theAudioClip(nullptr)
+        /* theImage( imageFileName != ""
+                ? new Image(imageFileName)
+                :0),
+        theAudioClip(audioClipFileName != ""
+                ? new AudioClip(audioClipFileName)
+                : 0)
+ */{
 
     try{
 
-    if(imageFileName !=""){
-        theImage = new Image(imageFileName);
-    }
-    if(audioClipFileName != ""){
-        theAudioClip = new AudioClip(audioClipFileName);// if here throw exception
-        /* 
-            ~BookEntry will not be called.
+        // if(imageFileName !=""){
+        //     theImage = new Image(imageFileName);
+        // }
+        // if(audioClipFileName != ""){
+        //     theAudioClip = new AudioClip(audioClipFileName);// if here throw exception
+        //     /* 
+        //         ~BookEntry will not be called.
 
 
-        theImage pointer will be leaked.
-        
-        
-        
-        
-        
-        */
-    }
+        //     theImage pointer will be leaked.
+            
+            
+            
+            
+            
+        //     */
+        // }
     }//try end
     catch(...){ // do cleaning .
-        delete theImage;
-        delete theAudioClip;
+        // delete theImage;
+        // delete theAudioClip;
+        cleanup(); //release resources
         throw;   // broadcast exception
     }
 
@@ -88,6 +96,12 @@ BookEntry::BookEntry(
 
 BookEntry::~BookEntry()
 {
+    // delete theImage;
+    // delete theAudioClip;
+    cleanup();
+}
+
+void BookEntry::cleanup(){
     delete theImage;
     delete theAudioClip;
 }
