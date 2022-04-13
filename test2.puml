@@ -222,3 +222,25 @@ doAdvancestd::iter3  <|--advance
 doAdvancestd::iter2  <|--advance
 doAdvancestd::iter1  <|--advance
 @enduml 
+
+
+
+@startuml
+
+exception <|-- logic_error
+exception <|--  runtime_error
+
+logic_error <|-- domain_error 
+logic_error <|-- invalid_argument 
+logic_error <|-- length_error 
+logic_error <|-- out_of_range 
+
+runtime_error <|-- range_error
+runtime_error <|-- underflow_error
+runtime_error <|-- overflow_error
+
+
+
+
+
+@enduml

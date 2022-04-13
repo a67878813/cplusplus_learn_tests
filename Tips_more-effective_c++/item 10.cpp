@@ -109,6 +109,10 @@ BookEntry::~BookEntry()
     // delete theImage;
     // delete theAudioClip;
     cleanup();
+
+    // if use std::shared_ptr<Image> _theImage; 
+// std::shared_ptr<AudioClip> _theAudioClip; //constructed  means automatic destructed.
+    //~() have not to do anything.
 }
 
 void BookEntry::cleanup(){
