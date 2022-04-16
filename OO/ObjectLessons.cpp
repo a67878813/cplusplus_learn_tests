@@ -77,4 +77,5 @@ operator << (std::ostream & os, Point<type,dim> & pt)
     os <<pt[dim-1];
     os << " )";
     return os ; 
+    
 };

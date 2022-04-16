@@ -1,6 +1,6 @@
 
 
-#include <ostream>
+#include <iostream>
 class Point{
     public:
 
@@ -9,7 +9,6 @@ class Point{
 
     float x() const ;
     static int PointCount();
-
 
 
 
@@ -56,3 +55,17 @@ static int _point_count;
         //static & non-static function members 
 
 
+
+// virtual public inheritance
+// birtual base class add pointer.
+
+// how the object model effects programs
+
+//
+class X{
+public:
+    virtual ~X() ;
+    virtual X foobar(){
+
+    }
+}
