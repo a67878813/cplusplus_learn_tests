@@ -10,7 +10,8 @@ class B {
 
 class D : public B {
     public:
-    void f() override;
+    // using B::f;
+    virtual void f( ) override;
 };
 
 int main(){
