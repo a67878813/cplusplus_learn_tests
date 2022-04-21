@@ -244,3 +244,25 @@ runtime_error <|-- overflow_error
 
 
 @enduml
+
+
+@startuml
+class NewsLetter{
+- list
+}
+
+class NLComponent{
+
+}
+
+class TextBlock{}
+
+class Graphic {}
+
+NLComponent <-- TextBlock 
+NLComponent <--  Graphic 
+
+NewsLetter::list -> NLComponent
+
+
+@enduml
