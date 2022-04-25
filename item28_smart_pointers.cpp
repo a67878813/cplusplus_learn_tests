@@ -84,49 +84,66 @@ void editTuple(DBPtr<Tuple>& pt)
     } while (pt->isValid() == false);
 }
 
+class MusicProduct;
+class Cassette;
 // ========= a possible auto_ptr
-template<class T>
+template <class T>
 class auto_ptr {
-    
 public:
-    auto_ptr(T* ptr = 0) 
-        : pointee(ptr){};
-    ~auto_ptr(){delete pointee;};
-    
-    auto_ptr(auto_ptr<T>& rhs); //copy
-
-    auto_ptr<T>& // operator =
-        operator=(auto_ptr<T>& rhs) ;    
-
-    T& operator*() const; // dereference 
-
+    auto_ptr(T *ptr = 0) :
+        pointee(ptr){};
+    ~auto_ptr() {
+        delete pointee;
+    };
+    // if auto_ptr<musicProduct> has 
+            //auto_ptr( auto_ptr<Cassette>& ptr) //
+    // auto_ptr( auto_ptr<Cassette>& ptr) ;
+    auto_ptr(auto_ptr<T> &rhs); // copy
+    // auto_ptr( auto_ptr<Cassette>& ptr) ;
+    auto_ptr<T> & // operator =
+    operator=(auto_ptr<T> &rhs);
+    T &operator*() const; // dereference
 
     // operator ==
 
-    //if dumb ptr is null return nullptr;
-    //else return not 0;
-    // operator void*();  // implicit convert
-    // operator const void*();
-    
-    //make   if(ptn)     legal 
+    // if dumb ptr is null return nullptr;
+    // else return not 0;
+    //  operator void*();  // implicit convert
+    //  operator const void*();
+
+    // make   if(ptn)     legal
     explicit operator bool();
 
     // make if(!ptn) legal
-    bool operator!() const ; //return true when ptr to null
+    bool operator!() const; // return true when ptr to null
 
+    //===========================
+    // hand write version
+    // implicit type convert
+    operator auto_ptr<MusicProduct>() {
+        return auto_ptr<MusicProduct>(pointee);
+    }
 
+    // template  version
+    // contain     const
+    template <class newType>
+    operator auto_ptr<newType>() {
+        return auto_ptr<newType>(pointee);
+    }
+    // No matching conversion for functional-style cast from
+    //  'dumbtest *' to 'auto_ptr<MusicProduct>'
+                        // initialize ctor
+                        // auto_ptr(MusicProduct *ptr = 0)
+                        // : pointee(ptr){};
+    //   there is no conver of dunbtest* to MusicProduct *
 private:
 T* pointee;
-    
-protected:
-    
 };
 
 
 
+
 template<class T>
-
-
 auto_ptr<T>::auto_ptr(auto_ptr<T>& rhs) // when copy 
 {
     pointee = rhs.pointee; //  onership was tranfered to left obj
@@ -251,20 +268,224 @@ void processTuple(DBPtr<Tuple>& pt)
     // use raw tuple ptr
 }
 
+// all clints that has done some tuple
 class TupleAccessors {
 public:
+    // tuple* to TupleAccessors
     TupleAccessors(const Tuple *pt);
+    //
+    //this to   Tuple();
+    // operator Tuple();
+
+
+
+
     ~TupleAccessors();
-    
 private:
     
 protected:
     
 };
 
+TupleAccessors merge(const TupleAccessors& ta1, 
+                const TupleAccessors& ta2);
+    
+
+void test33(){
+    Tuple *pt1, *pt2;
+
+    merge(pt1,pt2);
+
+    DBPtr<Tuple> ppt1, ppt2;
+    merge(ppt1,ppt2);
+}
+
+// smart pointers and "inheritance " type convert
+
+// MusicProduct
+// cassette     cd
+
+class MusicProduct{
+public:
+    MusicProduct(const std::string& title);
+    virtual void play() const=0;
+    virtual void displayTitle() const = 0;
+private:
+    MusicProduct* pointee;
+};
+
+class Cassette:public MusicProduct{
+public:
+    Cassette(const std::string& title);
+    virtual void play() const;
+    virtual void displayTitle() const;
+
+private:
+    Cassette* pointee;
+};
+// class auto_ptr<Cassette>{
+//     operator auto_ptr<MusicProduct>(){
+//         return auto_ptr<MusicProduct>(pointee);
+//     }
+// }
+
+class CD:public MusicProduct{
+public:
+    CD(const std::string& title);
+    virtual void play() const;
+    virtual void displayTitle() const;
+private:
+    CD* pointee;
+
+};
+class dumbtest{};
+// template<> 
+// class auto_ptr<Cassette>{
+//     public:
+//     operator auto_ptr<MusicProduct>(){
+//         return auto_ptr<MusicProduct>( 
+//             auto_ptr<Cassette> pointee);
+//     }
+// };
+void displayAndPlay(const MusicProduct* pmp,int numTimes)
+{
+    for(int i=1; i<= numTimes; ++i){
+        pmp->displayTitle();
+        pmp->play();
+    }
+}
+void displayAndPlay(const auto_ptr<MusicProduct>& pmp,int numTimes)
+{
+    // smart pointer obj to Cassette -------- funMusic
+    auto_ptr<Cassette> funMusic(new Cassette("Alapalooza"));
+    auto_ptr<CD> nightmareMusic(new CD("Disco ..."));
+
+    displayAndPlay(funMusic, 10); //no matching call
+    // compiler need convert auto_ptr<Cassette>   to auto_ptr<MusicProduct>
+    /*  
+    compiler will do :
+
+    1.looking for class auto-ptr whether has matched operator convert .
+    not find any.
+
+    2.looking for member fuction template to initialize, for convert
+            find a template getting type of newType
+                        template <class newType>
+                        operator auto_ptr<newType>() {
+                            return auto_ptr<newType>(pointee);
+                        }
+    3. so initialize this template to: (matched newType = MusicProduct)
+
+                        operator auto_ptr<MusicProduct>(){
+                            return auto_ptr<MusicProduct>(pointee);
+                        }
+                        which is
+                        auto_ptr(MusicProduct * ptr)    (c'tor)
+
+    // make some func code like:
+                                        // implicit convert to auto_ptr<MusicProduct>    
+        auto_ptr<Cassette>::operator auto_ptr<MusicProduct>(){
+            return auto_ptr<MusicProduct>(pointee);
+        }
+
+    4. for compile , it must legal that (dumb T pointer) pointee convert to
+        (MusicProduct *)   (this is auto_ptr<MusicProduct> 's initialized c'tor)
+    5. which is legal.  could be compiled
+    6. success implicit convert [auto_ptr<direved_class>  ,  to auto_ptr<base_class>]
+    
+    */
 
 
 
 
 
 
+
+    displayAndPlay(nightmareMusic, 0);
+    auto_ptr<dumbtest> fff(new dumbtest);
+
+    // error message displayed on template<  >
+    // displayAndPlay(fff, 10);// wrong??? raw pointer has no inheritance
+    //
+}
+
+
+void test_music(){
+    //dump pointer virsion
+    Cassette *funMusic = new Cassette("Alapalooza");
+    CD* nightmareMusic = new CD("Disco Hits of the 70s");
+    displayAndPlay(funMusic, 10);
+    displayAndPlay(nightmareMusic, 0);
+
+
+}
+
+void test_music2(){
+    // smart pointer obj to Cassette -------- funMusic
+    auto_ptr<Cassette> funMusic(new Cassette("Alapalooza"));
+    auto_ptr<CD> nightmareMusic(new CD("Disco ..."));
+
+    displayAndPlay(funMusic, 10); //no matching call
+    displayAndPlay(nightmareMusic, 0);
+    //compiler cannot convert 
+        // auto-ptr<CD> || <Cassette> ->> to autoptr<MusicProduct>
+    
+    // compiler see 3 differect classes
+}
+
+
+
+
+// class musicProduct
+
+//class Cassette    class CD
+//class CasSingle
+
+class CasSingle:public Cassette{
+public:
+    CasSingle(const std::string& title);
+    virtual void play() const;
+    virtual void displayTitle() const;
+private:
+    CasSingle* pointee;
+
+};
+
+
+
+
+//there is ambiguous
+void displayAndPlay(const auto_ptr<Cassette>& pmp,int numTimes);
+
+void test3334(){
+    auto_ptr<CasSingle> dumbMusic(new CasSingle("Achy breaky Heart"));
+    displayAndPlay(dumbMusic, 1)    ;
+}
+
+
+
+
+
+
+
+
+
+
+//==========================
+
+template<class T>
+class SmartPtrToConst{
+public:
+
+protected:
+    union{
+        const T* constPointee; // for SmartPtrToConst
+        T* pointee;// for SmartPtr
+    };
+};
+
+template<class T>
+class SmartPtr:
+public SmartPtrToConst<T> {
+
+}
