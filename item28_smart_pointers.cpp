@@ -485,7 +485,14 @@ protected:
 };
 
 template<class T>
-class SmartPtr:
-public SmartPtrToConst<T> {
+class SmartPtr:public SmartPtrToConst<T> {
+
+};
+
+// class CD;
+void test5(){
+    SmartPtr<CD> pCD = new CD("famous move");
+
+    SmartPtrToConst<CD> pConstCD = pCD;
 
 }
