@@ -31,6 +31,9 @@ public:
     T* operator->() const; // dereference to get a member object of pointer
     T& operator*() const; // dereference 
 
+    // implicit convert
+    operator T*() {return pointee;}
+
     
 private:
     T* pointee; // dumb pointer to T
@@ -207,43 +210,57 @@ void test(){
 
 }
 
-
-
-
-
-
-
-//dereferencing operators
-template<class T>
-T& SmartPtr<T>::operator*() const
-{
-    //perform "smart pointer " processing;
+// dereferencing operators
+template <class T>
+T &SmartPtr<T>::operator*() const {
+    // perform "smart pointer " processing;
 
     return *pointee;
 }
 
-
-
-//dereferencing operators
-template<class T>
-T* SmartPtr<T>::operator->() const
-{
-    //perform "smart pointer " processing;
+// dereferencing operators
+template <class T>
+T *SmartPtr<T>::operator->() const {
+    // perform "smart pointer " processing;
 
     return pointee;
 };
 
-
-
-
-
-
-
 // convert smart pointer to dumb pointer
 
+void normalize(Tuple *pt); // this func using dumb pointer
 
+void test123(){
+    DBPtr<Tuple> pt;
 
+    // no matching call
+    // template add T*() ; make this func legal
+    normalize(pt);
 
+    normalize(&(*pt));
+    normalize(&*pt);
+    if(pt ==0){};
+    if(pt){};
+    if(!pt){};
+}
+
+void processTuple(DBPtr<Tuple>& pt)
+{
+    Tuple *rawTuplePtr = pt;
+
+    // use raw tuple ptr
+}
+
+class TupleAccessors {
+public:
+    TupleAccessors(const Tuple *pt);
+    ~TupleAccessors();
+    
+private:
+    
+protected:
+    
+};
 
 
 
