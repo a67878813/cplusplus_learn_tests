@@ -6,16 +6,11 @@
 
 
 
+45656
 
 
 
-
-
-
-
-
-
-
+45656
 //=== object-counting && pseudo-constructors
 
 class Printer{
