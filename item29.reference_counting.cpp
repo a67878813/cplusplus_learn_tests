@@ -5,6 +5,7 @@
 template<class T>
 class RCPtr {
 public:
+    //heap 
     RCPtr(T* realPtr = 0);
     RCPtr (const RCPtr& rhs);
     ~RCPtr();
@@ -24,6 +25,7 @@ private:
     void makeCopy();
 };
 
+//ctor
 template<class T>
 RCPtr<T>::RCPtr(T* realPtr )
     :pointee(realPtr)// 
@@ -43,7 +45,6 @@ void RCPtr<T>:: init()
 {
     if(pointee ==nullptr){
         return;
-
     }
     if (pointee->isShareable() == false){ // if not shareable ,
             // Wrong!! 
@@ -57,10 +58,7 @@ void RCPtr<T>:: init()
         shoud use sub_T 's stor
         which could be assured by
             virtual ctor    
-
-        
         */
-
     }
     pointee->addReference();
 }
@@ -87,7 +85,33 @@ T& RCPtr<T>::operator *()
 {
     makeCopy(); return *(pointee);
 }
+template<class T>
+T* RCPtr<T>::operator ->() const 
+{return  pointee;}
+template<class T>
+T& RCPtr<T>::operator *()  const
+{
+    return *(pointee);
+}
 
+
+template<class T>
+RCPtr<T>& RCPtr<T>::operator = (const RCPtr<T>& rhs)
+{
+    if(pointee != rhs.pointee){
+        if(pointee) {
+            pointee-> removeReference(); 
+        }
+        pointee = rhs.pointee;
+        init();// share or make a copy
+    }
+    return *this;
+}
+template<class T>
+RCPtr<T>::~RCPtr()
+{
+    if(pointee) pointee->removeReference();
+}
 void test1(){
 
 String a,b,c,d,e;
@@ -110,13 +134,10 @@ a=b=c=d=e= "Hello";
 //make referenc counting
 class RCObject {
 public:
-    RCObject();
-    RCObject(const RCObject& rhs);
-    RCObject& operator=(const RCObject& rhs);
-    virtual ~RCObject()=0;
     void addReference();
     void removeReference();
     void markUnshareable();
+
     bool isShareable() const;
     bool isShared() const;
 private:
@@ -124,6 +145,10 @@ private:
     bool shareable;
     
 protected:
+    RCObject();
+    RCObject(const RCObject& rhs);
+    RCObject& operator=(const RCObject& rhs);
+    virtual ~RCObject()=0;//virtual base
     
 };
 
@@ -158,51 +183,60 @@ bool RCObject::isShared() const
 
 
 
-
+//  applying  layer
 
 class String {
 public:
     String(const char* initValue = "");
-    String(const String& rhs);
+    // String(const String& rhs);
 
     String& operator =(const String& rhs);
     ~String();
     
+    //only read
     const char& operator[](int index) const;
+    //writeable
     char& operator[](int index);
 private:
     // char* data;
     // reference counting
     struct StringValue:public RCObject{
-        int refCount;
+        // int refCount;
         char *data;
-
+        //heap
         StringValue(const char *initValue);
         //should deep copy
         StringValue(const StringValue& rhs);
+        void init(const char *initValue);
         ~StringValue();    
     };
-    StringValue * value;
+    // StringValue * value;
 
     //smart ptr test
-    RCPtr<StringValue> value2;
+    RCPtr<StringValue> value;
 
     //some direved class test
     // struct specialStringValue :public StringValue{};
 };
-String::StringValue::StringValue(const char* initValue)
+
+
+// string value
+void String::StringValue::init(const char* initValue)
     // :refCount(1)
 {
     data = new char[strlen(initValue) +1];
     strcpy(data, initValue);
 }
 
+String::StringValue::StringValue(const char *initValue)
+{
+    init(initValue);
+}
+
 // deep copy
 String::StringValue::StringValue(const StringValue& rhs)
 {
-    data = new char[strlen(rhs.data)+1];
-
-    strcpy(data, rhs.data);
+    init(rhs.data);
 }
 
 
@@ -223,57 +257,62 @@ String::StringValue::~StringValue()
 // }
 
 
+//string ===================
 String::String(const char* initValue )
 :   value(new StringValue(initValue))
-{
+{} // call ctor of RCPtr::RCPtr(StringValue*)
 
-}
+// String::String(const String& rhs)//copy
+// :value(rhs.value)
+// {
+//     ++value->refCount;
+// }
 
-String::String(const String& rhs)//copy
-:value(rhs.value)
-{
-    ++value->refCount;
-}
-
-String::~String()
-{
-    if( --(value->refCount) ==0) 
-        delete value;
-}
+// String::~String()
+// {
+//     if( --(value->refCount) ==0) 
+//         delete value;
+// }
 
 
-String& String::operator =(const String& rhs)
+// String& String::operator =(const String& rhs)
 
-{
-    if(value ==rhs.value){
-        return *this;
-    }
+// {
+//     if(value ==rhs.value){
+//         return *this;
+//     }
 
-    if(--value->refCount ==0){
-        delete value;
-    }
+//     if(--value->refCount ==0){
+//         delete value;
+//     }
 
-    value = rhs.value;
-    ++value->refCount;
+//     value = rhs.value;
+//     ++value->refCount;
 
-    return *this;
+//     return *this;
 
-}
+// }
 
 //copy-on-write
 
+//read []
 const char& String::operator[](int index) const
 {
     return value->data[index];
 }
 
+//writeable []
 char& String::operator[](int index)
 {
     // if share value
     // create a copy
-    if(value->refCount >1){
-        -- value->refCount;
+    if(value->isShared()){
         value = new StringValue(value->data);
+        //call RCPtr::operator = (RCPtr&)
+        // lhs sub ; rhs +
+        value->markUnshareable();//cause it is writeable
+        return value->data[index];
+
     }
 
     //return a reference
