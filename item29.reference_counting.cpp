@@ -1,3 +1,52 @@
+/* 
+
+Reference counting Tips:
+
+When to use?
+
+1. relative more objects share relative less real Value.
+
+2. It is high that the costs of ctoring & dtoring a value.
+
+3.real value costs too much memory.
+
+
+
+// golden reference
+
+1. A/B test
+
+2.count the rate of obj's number / real value
+
+
+When not to use?
+
+1. has the structure blow:
+    self-referential 
+    circular dependency
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
 #include <iostream>
 #include <cstring>
 
@@ -319,3 +368,155 @@ char& String::operator[](int index)
     return value->data[index];
 
 }
+
+
+//==========================
+// inter face layer RCIPtr
+//=========================
+class Widget;
+
+class RCWidget;
+// class RCIPtr;
+
+
+class RCObject;
+// class CountHolder;
+
+template<class T>
+class RCIPtr {
+public:
+    //heap 
+    RCIPtr (T* realPtr = 0);
+    RCIPtr (const RCIPtr& rhs);
+    ~RCIPtr ();
+    RCIPtr & operator = (const RCIPtr & rhs);
+    const T* operator ->() const ;
+    const T& operator*() const;
+    // need copy-on-write
+    T* operator ->()  ;
+    T& operator*() ;
+private:
+    struct CountHolder: public RCObject{
+        ~CountHolder() {delete pointee;}
+        T* pointee;
+    };
+    // if there dirived sub_T
+    CountHolder * counter; // such as RCObject* pointee
+    void init();
+    void makeCopy();
+};
+
+//ctor
+template<class T>
+RCIPtr<T>::RCIPtr (T* realPtr )
+    :counter(new CountHolder)// 
+{
+    counter->pointee = realPtr;
+    init();
+}
+
+template<class T>
+RCIPtr< T>::RCIPtr (const RCIPtr & rhs)
+:counter(rhs.counter)
+{
+    init();
+}
+
+template<class T>
+void RCIPtr <T>:: init()
+{
+    // if(counter==nullptr){
+    //     return;
+    // }
+    if (counter->isShareable() == false){ // if not shareable ,
+        T* oldValue = counter->pointee;
+        counter= new T(*counter);  // make a copy
+        counter->pointee = new T(*oldValue);
+    }
+    counter->addReference();
+}
+
+template<class T>
+void RCIPtr <T>::makeCopy()
+{
+    // copy-on-write
+    if(counter->isShared()){
+        /* 
+        1.make a temp oldValue pointer
+        2. call  -> removeReference() // if delete olds.
+        3. make new CountHolder;
+        4. make a copy pointee 
+        5.call -> addReference()
+        */
+        T* oldValue = counter->pointee;
+        counter = new CountHolder;
+        counter->pointee = new T(*oldValue);
+        counter->addReference();
+    }
+}
+template<class T>
+T* RCIPtr <T>::operator ->()  
+    {makeCopy(); return counter->pointee;}
+
+template<class T>
+T& RCIPtr <T>::operator *()  
+{
+    makeCopy(); return *(counter->pointee);
+}
+
+template<class T>
+const T* RCIPtr <T>::operator ->() const 
+{return  counter->pointee;}
+template<class T>
+const T& RCIPtr <T>::operator *()  const
+{  return *(counter->pointee);}
+
+
+template<class T>
+RCIPtr <T>& RCIPtr <T>::operator = (const RCIPtr <T>& rhs)
+{
+    // lhs - , rhs +
+    if(counter!= rhs.counter){
+        counter-> removeReference(); 
+        counter= rhs.counter;
+        init();// share or make a copy
+    }
+    return *this;
+}
+template<class T>
+RCIPtr<T>::~RCIPtr ()
+{
+    counter->removeReference();
+}
+
+
+
+// class Widget  // unchangeble
+class Widget{
+public:
+    Widget(int size);
+    Widget(const Widget& rhs);
+
+    ~Widget();
+    Widget& operator =(const Widget& rhs);
+    void doThis();
+    int showThat() const;
+
+};
+
+
+
+//ECWidget  // reference count class ( like interface to client)
+class RCWidget {
+public:
+    RCWidget(int size): value(new Widget(size)){};
+
+    int showThat() const{return value->showThat();}
+    void doThis() {value->doThis();}
+    ~RCWidget();
+    
+private:
+    RCIPtr<Widget> value;
+protected:
+    
+};
