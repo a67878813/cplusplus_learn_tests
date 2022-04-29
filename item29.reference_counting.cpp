@@ -244,7 +244,7 @@ public:
     
     //only read
     const char& operator[](int index) const;
-    //writeable
+    //writable
     char& operator[](int index);
 private:
     // char* data;
@@ -350,7 +350,7 @@ const char& String::operator[](int index) const
     return value->data[index];
 }
 
-//writeable []
+//writable []
 char& String::operator[](int index)
 {
     // if share value
@@ -359,7 +359,7 @@ char& String::operator[](int index)
         value = new StringValue(value->data);
         //call RCPtr::operator = (RCPtr&)
         // lhs sub ; rhs +
-        value->markUnshareable();//cause it is writeable
+        value->markUnshareable();//cause it is writable
         return value->data[index];
 
     }
