@@ -49,6 +49,7 @@ public:
 
         // at rhs (rvalue usages)
         operator char() const;// return a char (by-value)
+        // operator char&();
         // operator const String()const;
 
         char* operator&();  // & overload
@@ -164,14 +165,29 @@ String ss1 = "asd";
 
 }
 
+
+
+
+
+template<class T>
+class Proxy2:public T{
+    Proxy2(Array<T>& array, int index);
+
+};
+
 template<class T>
 class Array{
 public:
-    class Proxy{
+    
+    class Proxy  {
     public:
         Proxy(Array<T>& array, int index);
         Proxy& operator=(const T& rhs);
         operator T() const;
+        operator T();
+        
+        // or manual T's member-functions
+        T* pointer;
 
     };
     const Proxy operator[](int index) const;
@@ -180,15 +196,15 @@ public:
 };
 
 
-void test3(){
-    Array<int> intArray;
-    intArray[5] = 22;
-    // need manual overload relative operator
-    intArray[5] += 22;
-    intArray[5] ++;
+// void test3(){
+//     Array<int> intArray;
+//     intArray[5] = 22;
+//     // need manual overload relative operator
+//     intArray[5] += 22;
+//     intArray[5] ++;
 
 
-}
+// }
 
 
 class Rational {
@@ -205,7 +221,35 @@ protected:
 };
 
 void test4(){
+
     Array<Rational> array;
+    // u must overload every Raional's member functions
     std::cout << array[4].numerator() << std::endl;
     int denom = array[22].denominator();
 }
+
+void swap(char& a,char& b);
+void test5(){
+    String s = "+C+";
+    swap(s[0],s[1]);
+
+}
+
+
+/* 
+proxy classes advantages:
+1. distinguish read ||write
+            (lvalue  rvalue)
+2.multi dimention array
+
+3. restrain implicit convert
+
+4.normally could sustitute original obj.
+
+disadvantages:
+1. restrain implicit convert
+2. temp obj need ctoring and dtoring
+3. make more complexity
+        more difficult to design accomplish retrive mantainance
+4. proxy obj changes semantic
+*/
