@@ -36,63 +36,11 @@ private:
     // static HitMap* initializeCollisionMap();
     
 };
-// SpaceShip3::HitFunctionPtr 
-//     SpaceShip3::lookup(const GameObject3& whatWeHit)
-// {
-//     static std::unique_ptr<HitMap> collisionMap (initializeCollisionMap() );
-//     auto mapEntry = 
-//         collisionMap->find(typeid(whatWeHit).name());
-//     // not find  , mapEntry == collisionMap.end()
 
-//     if(mapEntry == collisionMap->end()) return nullptr;
-
-//     // find ptr
-//     return mapEntry->second;
-
-// }
-// SpaceShip3::HitMap * SpaceShip3::initializeCollisionMap()
-// {
-//     HitMap *phm = new HitMap;
-//     (*phm) ["SpaceShip"] = &SpaceShip3::hitSpaceShip;
-//     (*phm) ["SpaceStation"] = &SpaceShip3::hitSpaceStation;
-//     (*phm) ["Astroid"] = &SpaceShip3::hitAsteroid;
-//     return phm;
-// }
+// if add new sub class
+class Satellite3: public GameObject3{};
 
 
-
-// void SpaceShip3::collide(GameObject3& otherObject)
-// {
-//     HitFunctionPtr hfp =
-//         lookup(otherObject); // find caller obj
-//     if(hfp) {
-//         (this->*hfp)( otherObject);
-
-//     }
-//     else {
-//         throw CollisionWithUnknowObject3(otherObject);
-//     }
-// }
-
-// void SpaceShip3::hitSpaceShip(GameObject3& otherObject)
-// {
-//     SpaceShip3& otherShip = 
-//         dynamic_cast<SpaceShip3&>(otherObject);
-//     //ship-ship
-// }
-// void SpaceShip3::hitSpaceStation(GameObject3& otherObject)
-// {
-//     auto  station=
-//         dynamic_cast<SpaceStation3&>(otherObject);
-//     //ship-station
-// }
-
-
-//========= process by non-member function
-// some pseudo head files
-// #include "SpaceShip.h"
-// #include "SpaceStation.h"
-// #include "Asteroid.h"
 
 //anonymous namespace
 //collision proccessing functions
@@ -228,13 +176,22 @@ protected:
 void shipAsteroid22(GameObject3& spaceShip, GameObject3& asteroid);
 void shipStation22(GameObject3& spaceShip, GameObject3& spaceStation);
 void asteroidStation22(GameObject3& asteroid, GameObject3& SpaceStation);
+
+//add some new_process collision func
+void satelliteShip33(GameObject3& satellite, GameObject3& spaceShip);
+void satelliteAsteroid33(GameObject3& satellite, GameObject3& asteroid);
+void satelliteStation33(GameObject3& satellite, GameObject3& spaceStation);
 // }
 
 // should ensure added before usage
 void test2(){
-    CollisionMap::theCollisionMap().addEntry("SpaceShip", "Asteroid", &shipAsteroid22);
-    CollisionMap::theCollisionMap().addEntry("SpaceShip", "SpaceStation", &shipStation22);
-    CollisionMap::theCollisionMap().addEntry("Asteroid", "SpaceStation", &asteroidStation22);
+    CollisionMap::theCollisionMap().addEntry("SpaceShip3", "Asteroid3", &shipAsteroid22);
+    CollisionMap::theCollisionMap().addEntry("SpaceShip3", "SpaceStation3", &shipStation22);
+    CollisionMap::theCollisionMap().addEntry("Asteroid3", "SpaceStation3", &asteroidStation22);
+    //add here
+    CollisionMap::theCollisionMap().addEntry("Satellite3", "SpaceShip3", &satelliteShip33);
+    CollisionMap::theCollisionMap().addEntry("Satellite3", "Asteroid3", &satelliteAsteroid33);
+    CollisionMap::theCollisionMap().addEntry("Satellite3", "SpaceStation3", &satelliteStation33);
 }
 
 
@@ -249,11 +206,23 @@ public:
         ){
         CollisionMap::theCollisionMap().addEntry(type1,type2,collisionFunction,symmetric);
     };
-
+    static void batch_add(){
+        test2();
+    }
     ~RegisterCollisionFunction();
-    
-private:
-    
-protected:
-    
 };
+//===global ctored befor main()
+RegisterCollisionFunction cf1("SpaceShip3", "Asteroid3", &shipAsteroid22);
+RegisterCollisionFunction cf2("SpaceShip3", "SpaceStation3", &shipStation22);
+RegisterCollisionFunction cf3("Asteroid3", "SpaceStation3", &asteroidStation22);
+
+//or add it to here
+RegisterCollisionFunction cf4("Satellite3", "SpaceShip3", &satelliteShip33);
+RegisterCollisionFunction cf5("Satellite3", "Asteroid3", &satelliteAsteroid33);
+RegisterCollisionFunction cf6("Satellite3", "SpaceStation3", &satelliteStation33);
+
+
+int main()
+{
+    return 0;
+}
