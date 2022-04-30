@@ -1,4 +1,7 @@
 #include <iostream>
+#include <map>
+#include <string>
+#include <utility>
 
 class GameObject;
 
@@ -87,6 +90,7 @@ public:
     virtual void collide(SpaceShip1& otherObject) =0;
     virtual void collide(SpaceStation1& otherObject) =0;
     virtual void collide(Asteroid1& otherObject) =0;
+    //if there are more sub_class,add it to here
 private:
     
 protected:
@@ -99,6 +103,7 @@ public:
     virtual void collide(SpaceShip1& otherObject);
     virtual void collide(SpaceStation1& otherObject);
     virtual void collide(Asteroid1& otherObject);
+    //if there are more sub_class,add it to here
 };
 
 void SpaceShip1::collide(GameObject1& otherObject)
@@ -123,7 +128,7 @@ protected:
     
 };
 class SpaceStation3 : public GameObject3 {};
-class Asteroid3 : public GameObject3 {};
+// class Asteroid3 : public GameObject3 {};
 #include <map>
 class SpaceShip3: public GameObject3{
 public:
@@ -133,7 +138,22 @@ public:
     virtual void hitAsteroid(GameObject3& otherObject);
 
 private:
-    using HitFunctionPtr = void (SpaceShip3::*)(GameObject3 &);
+    using HitFunctionPtr = void (SpaceShip3::*)(GameObject3&);
+    static HitFunctionPtr lookup(const GameObject3& whatWeHit);
+    using HitMap = std::map<string, HitFunctionPtr>;
+    static HitMap* initializeCollisionMap();
+    
+};
+
+class Asteroid3: public GameObject3{
+public:
+    virtual void collide(GameObject3& otherObject);
+    virtual void hitSpaceShip(GameObject3& otherObject);
+    virtual void hitSpaceStation(GameObject3& otherObject);
+    virtual void hitAsteroid(GameObject3& otherObject);
+
+private:
+    using HitFunctionPtr = void (SpaceShip3::*)(GameObject3&);
     static HitFunctionPtr lookup(const GameObject3& whatWeHit);
     using HitMap = std::map<string, HitFunctionPtr>;
     static HitMap* initializeCollisionMap();
@@ -192,18 +212,3 @@ void SpaceShip3::hitSpaceStation(GameObject3& otherObject)
 
 // init Virtual Fuction Tables
 
-
-
-//========= process by non-member function
-#include "SpaceShip.h"
-#include "SpaceStation.h"
-#include "Asteroid.h"
-//anonymous namespace
-namespace{
-
-
-
-
-
-
-}

@@ -266,3 +266,32 @@ NewsLetter::list -> NLComponent
 
 
 @enduml
+
+@startuml
+class GameObject{
+
+}
+class SpaceShip{
+
+}
+class Asteroid{
+
+}
+
+GameObject <-- Asteroid
+GameObject <--  SpaceStation
+GameObject <-- SpaceShip
+
+class CommercialShip{
+
+}
+class MilitaryShip{
+
+}
+SpaceShip <-- CommercialShip
+SpaceShip <-- MilitaryShip
+
+
+
+
+@enduml
