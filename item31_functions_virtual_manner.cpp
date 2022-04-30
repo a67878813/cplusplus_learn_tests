@@ -20,7 +20,7 @@ void checkForCollision(GameObject& object1, GameObject& object2)
     }
 }
 
-//============ virtual function + RTTI (runtime type )
+//============ virtual function + RTTI (runtime type identification, RTTI) )
 
 class GameObject {
 public:
