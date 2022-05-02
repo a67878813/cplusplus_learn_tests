@@ -26,13 +26,26 @@ but T has not been constructed.
 //              ?? vector::reserve    string::reserve
  */
 
-
+//declare
+void* operator new(size_t bytes);
+template<class T>
+pointer allocator<T>::allocate(size_type numObjects);
 
 
 
 
 
 // list<T>
+// list contructed by node
+//
+/* 
+node {
+    T node 
+    T* pre pointer 
+    T* post pointer 
+}
+
+*/
 template<typename T, 
     typename Allocator = allocator<T>  > //
 class list_1{
@@ -55,7 +68,7 @@ class list_1{
                                 //    rebind(  other  )
 
 template <typename T> //allocator template.(std::allocator \ specialallocator)
-class allocator1{
+class Allocator1{
     public:
     template<typename U>
     struct rebind{ // should have rebind template
@@ -67,7 +80,9 @@ class allocator1{
 
 
 
-
+void test22(){
+    Allocator1<list_1<int> >rebind<list_1<int>::ListNode>::other
+}
 
 
 
@@ -115,13 +130,14 @@ sizeof(int)== 4;
 
 
 //  =============
-list<int> L;
+    list<int> L;
 // ==
 // list<int, allocator<int> >;
 
 
 
-using SAW = SpecialAllocator<Widget> ;
+// using SAW = SpecialAllocator<Widget> ;
+// using SAW = SpecialAllocator<Widget> ;
 set<Widget, SAW> s;
 //          here is typedef of SpecialAllocator<widget>
                             // not allocate malloc memory
@@ -129,3 +145,25 @@ set<Widget, SAW> s;
 // list set multiset map multimap
 
 };
+
+
+
+/* 
+allocator is a template ,param T is object's type
+
+need define pointer and reference , making pointer as T*, reference as T&
+
+do not make allocator has per-object state
+
+allocate(objects number), returning a raw memory T* pointer,
+ and it should be ctored
+
+need write rebind template which is depended by STL
+
+
+
+
+
+
+
+*/
