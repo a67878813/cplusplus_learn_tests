@@ -35,10 +35,45 @@ inline void end(){
     std::cout << "Time measured: "<< elapsed.count()   << " nano"<< std::endl;
 }
 
+void doSomething(const int* pInts, size_t numInts);
+//vector<int> v ->- C API
+
+//  doSomething( &v[0], v.size());
+
+// problem of 0 vector
+void doSomething(const char* pCharPtr);
+void test(){
+    vector<int> v;
+    if(!v.empty()){
+        doSomething(&v[0], v.size());
+    }
+}
+void test2(){
+    string s;
+    doSomething(s.c_str() );
+
+
+}
+
+//C API
+size_t fillArray(double* pArray, size_t arraySize);
+
+void test3(){
+    int maxNumDoubles = 5;
+    vector<double> vd(maxNumDoubles); // create
+    vd.resize(fillArray(&vd[0],  vd.size())  );// using fillArray (C API) to write data
+            // to vd ( vector<double>)
+}
+
+//C API
+//write to char* return number
+size_t fillString(char* pArray, size_t arraySize);
+
+
 
 int main(){
 
-    for(int j=1;j<=10;++j) {
+    for(int j=1;j<=3;++j) {
 
         // {
             begin();
@@ -49,8 +84,11 @@ int main(){
                 v.push_back(i);
             }
             end();
+            std::cout << sizeof(&v[0] )<< std::endl;
+                //  &v[0]    
         // std::cout << v.size() << std::endl;
         // }
+// doSomething( &v[0], v.size());
 
     // std::cout << v.capacity() << std::endl;
     }//end j 

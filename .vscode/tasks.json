@@ -45,7 +45,7 @@
                 // "-stdlib=libc++", // 静态链接libc++，Linux下似乎会出错，出错的话删掉这行就行
                 // ubuntu nees
                 // sudo apt install libc++-dev, libunwind-dev
-                // "-O3", // o3 youhua
+                // "-O3", // o3 optimize for release
                 "-std=c++2a", // 这里采用c++17标准（推荐），C语言改成"-std=c11"
                 "-fms-extensions",
                 // "-std=c11", // 这里采用c++17标准（推荐），C语言改成"-std=c11"
