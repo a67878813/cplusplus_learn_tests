@@ -1,3 +1,8 @@
+//avoid using vector<bool>
+
+
+
+
 // vector string
 
 //C array should be relpaced with vector or string 
@@ -34,10 +39,25 @@ inline void end(){
     // std::cout << "Time measured: "<< elapsed.count() * 1e-9  << " seconds."<< std::endl;
     std::cout << "Time measured: "<< elapsed.count()   << " nano"<< std::endl;
 }
-//=====================
-//=====================
+//===========================
+//===========================
 
-void t_speed(){
+
+void test(){
+    vector<bool> v;
+    bool* pb =&v[0];
+}
+
+template<typename Allocator>
+vector_proxy<bool Allocator> {
+public:
+    class reference{};//proxy class
+
+    reference operator[](size_type n);// operator [] return a proxy 
+}
+
+
+int main(){
 
     for(int j=1;j<=10;++j) {
 
@@ -59,10 +79,3 @@ void t_speed(){
 
 }
 
-
-
-
-int main(){
-
-    t_speed();
-}

@@ -34,10 +34,30 @@ inline void end(){
     // std::cout << "Time measured: "<< elapsed.count() * 1e-9  << " seconds."<< std::endl;
     std::cout << "Time measured: "<< elapsed.count()   << " nano"<< std::endl;
 }
-//=====================
-//=====================
 
-void t_speed(){
+//=================================================
+//=================================================
+
+class Contestant{};
+
+vector<Contestant> contestants;
+// shirink to fit
+void test(){
+vector<Contestant>(contestants).swap(contestants);
+
+// newer manner
+contestants.shrink_to_fit();
+
+
+string s;
+//...
+string(s).swap(s);
+
+s.shrink_to_fit();
+}
+
+
+int main(){
 
     for(int j=1;j<=10;++j) {
 
@@ -59,10 +79,3 @@ void t_speed(){
 
 }
 
-
-
-
-int main(){
-
-    t_speed();
-}

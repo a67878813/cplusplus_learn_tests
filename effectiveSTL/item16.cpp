@@ -4,7 +4,10 @@
 #include <vector>
 #include <string>
 #include <iostream>
-
+#include <deque>
+#include <list>
+#include <map>
+#include <set>
 
 #include <chrono>
 
@@ -54,8 +57,13 @@ void test2(){
 
 
 }
+// C API read from c-array
+// &v[0], v.size()
 
-//C API
+// C API read from c-string
+// some_string.c_str()
+
+//C API (write to c-array)
 size_t fillArray(double* pArray, size_t arraySize);
 
 void test3(){
@@ -66,8 +74,47 @@ void test3(){
 }
 
 //C API
-//write to char* return number
+//write to char* return number (write to c-array)
 size_t fillString(char* pArray, size_t arraySize);
+
+void test5(){
+    //write to vector<char> then 
+    // ctor a string
+    int maxNumChars = 100;
+    vector<char> vc(maxNumChars);
+    
+    size_t charsWritten = fillString(&vc[0], vc.size() ); // using fillArray write to vc
+
+    //using range ctor function
+    string s(vc.begin(), vc.begin() + charsWritten);
+}
+
+void test6(){
+    size_t maxNumDoubles= 100;
+    vector<double> vd(maxNumDoubles);
+    vd.resize(fillArray( &vd[0], vd.size() ));
+
+    std::deque<double> d(vd.begin(), vd.end());// deque
+    std::list<double> l(vd.begin(), vd.end());// list
+    std::set<double> s(vd.begin(), vd.end());// set
+
+
+}
+
+// any container to c_api
+// copy to vector and to c-api
+void test7(){
+    // some data container
+    std::set<int> intSet; // gonna to C_Api
+
+    //copy to vector
+    vector<int> v(intSet.begin(), intSet.end());
+
+    // to C_API
+    if(!v.empty()) doSomething(&v[0], v.size());
+
+}
+
 
 
 
