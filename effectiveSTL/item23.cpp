@@ -27,7 +27,7 @@ using std::set;
 using std::multiset;
 using std::map;
 using std::multimap;
-
+using std::pair;
 
 static 
 std::chrono::time_point<std::chrono::system_clock, 
@@ -98,7 +98,7 @@ if (std::binary_search(vw.begin(), vw.end(), w)){
 }
 
 vector<Widget> ::iterator i =
-    lowrt_bound(vw.begin() , vw.end() , w);  //lower_bound search
+    lower_bound(vw.begin() , vw.end() , w);  //lower_bound search
 
 //                   w *i is not equivalent
 if (i != vw.end() && !(w <*i  )) {
@@ -173,5 +173,102 @@ private:
 
 
 void test2(){
+// substitude map<string, int>
+vector<Data> vd;
+//...
+//setting stage , massive insert
+
+
+// begin 
+sort(vd.begin(), vd.end());
+
+string s; // store searched obj
+
+//binary_search
+if(std::binary_search(vd.begin(), vd.end(), s, DataCompare()))  {
+    //
+}
+
+//lower_bound
+vector<Data>::iterator i =
+    lower_bound(vd.begin(),vd.end(), s , DataCompare());
+
+if (i != vd.end() && !DataCompare() (s, *i)){ // checking equivalence
 
 }
+
+
+
+//equal_range
+pair<vector<Data>::iterator,
+    vector<Data>::iterator> range =
+        equal_range(vd.begin(),vd.end(),
+                s,DataCompare());
+//equal_range
+auto range2 =
+        equal_range(vd.begin(),vd.end(),
+                s,DataCompare());
+
+//find stage
+if( range.first != range.second){
+
+
+
+}
+
+//end serch stage
+
+
+//begin re sort
+
+//
+
+
+//new serch stage
+
+
+}
+
+
+
+//================
+
+/* 
+Tips
+
+
+finds time O()
+
+
+
+map<  > O(log n)
+redBlack Tree
+
+
+unorderd_map ,, find O(1) - O(n)
+hash
+
+vector <  >   
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+//================
+
+
+/*
+
+
+
+*/
+
