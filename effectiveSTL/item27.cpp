@@ -1,5 +1,3 @@
-// vector string
-
 //C array should be relpaced with vector or string 
 #include <algorithm>
 #include <functional>
@@ -46,69 +44,38 @@ using std::unordered_set;
 using std::list;
 using std::deque;
 
+//=================
 
-
-//=========
-//iterator
-//=========
-
-
-// iterator;
-
-
-
-//const_iterator
-
-//reverse_iterator
-//const_reverse_iterator
-
-iterator insert(iterator position, const T& x);
-iterator erase(iterator position);
-iterator erase(iterator rangebegin, iterator rangeEnd);
-
-
-
-
-
-
-
-
-void test2() {
 using IntDeque = deque<int>;
 using Iter = IntDeque::iterator;
 using ConstIter = IntDeque::const_iterator;
 
-Iter i;
+//test
+void test1 () {
 ConstIter ci;
+Iter i (ci); // no implicit convert from const to non-const
 
-if (i== ci){ //compare iter & const_iter
+Iter i(const_cast<Iter>(ci)); // cannot const_iterator from const-iter
+};
+//test
+void test2 () {
+    IntDeque d;
+    ConstIter ci;
 
-}
+    Iter i(d.begin()); // i ->> d begin
 
-if (ci== i){ //compare iter & const_iter
-
-}
-
-if(i - ci >=3){} 
-
-if(static_cast<ConstIter>(i) - ci >=3) {}
-
-
-
-}
-
-
-
+    // create new iter , + distance of i - c_iter
+    advance( i, distance<ConstIter>(i, ci));
+    // advance +
+    // distance -
+    // for {vector string deque} O(n)
+    // for{hash ...} O(1)
 
 
 
+};
 
-
-
-
-
-
-
-
-
+// template<typename InputIterator>
+// typename Iterator_traits<InputIterator>::difference_type
+//     distance(InputIterator first, InputIterator last);
 
