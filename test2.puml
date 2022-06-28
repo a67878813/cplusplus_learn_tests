@@ -295,3 +295,23 @@ SpaceShip <-- MilitaryShip
 
 
 @enduml
+
+@startuml
+interface alias as "ros::ServiceClient" <<client>> {
+    set_trq_client=serviceClient<gazebo_msgs::ApplyJointEffort>("/gazebo/apply_joint_effort")
+    get_jnt_state_client=serviceClient<gazebo_msgs::GetJointProperties>("/gazebo/get_joint_properties")
+}
+class gazebo_msgs{
+    +effort_cmd_srv_msg= gazebo_msgs::ApplyJointEffort
+    +get_jnt_state_srv_msg= gazebo_msgs::ApplyJointEffort
+}
+class ros::Publisher{
+    +trq_publisher= bh.adverise<std_msgs::Float64>("jnt_trq",1)
+    +vel_publisher= bh.adverise<std_msgs::Float64>("jnt_vel",1)
+    +pos_publisher= bh.adverise<std_msgs::Float64>("jnt_pos",1)
+    +joint_state_publisher= bh.adverise<sensor_msgs::JointState>("joint_states",1)
+}
+class ros::Subscriber{
+    +pos_cmd_subscriber = nh.subscribe("pos_cmd",1,posCmdCB)
+}
+@enduml
