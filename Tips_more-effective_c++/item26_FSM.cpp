@@ -8,8 +8,8 @@ public:
     static FSA* makeFSA(const FSA& rhs);
 
 private:
-    FSA();
-    FSA(const FSA& rhs);
+    FSA();//diable create
+    FSA(const FSA& rhs); //disable copy
 };
 
 FSA* FSA::makeFSA()
@@ -18,10 +18,6 @@ FSA* FSA::makeFSA()
 FSA* FSA::makeFSA(const FSA& rhs)
 {return new FSA(rhs);  }
 
-
-
-
-sdfsdfsdfsdf
 
 
 
