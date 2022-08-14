@@ -14,14 +14,16 @@ template<typename Vec>
 concept FloatVec = 
 std::floating_point<Scalar<Vec>> &&
 requires(Vec vec){
-    {vec.size() } -> std::integral;
+    {vec.size() } ;//-> std::integral;  //depict type
+    requires std::integral<decltype(vec.size())>;//force restrict
 };
 
 
 // template <typename Vec>
 // requires FloatVec<Vec>
 template <FloatVec Vec>
-auto norm(const Vec &vec) -> Scalar<Vec> {
+auto norm(const Vec &vec) //-> Scalar<Vec> 
+{
     Scalar<Vec> result = 0;
     using Size = decltype(vec.size());
 
@@ -31,6 +33,11 @@ auto norm(const Vec &vec) -> Scalar<Vec> {
     return std::sqrt(result);
 }
 
+FloatVec auto Add(FloatVec auto a,FloatVec auto b)
+{
+return a;
+}
+
 struct Point2{
     float x;
     float y;
@@ -38,7 +45,7 @@ struct Point2{
     auto size() const -> int{
         return 2;
     }
-    auto operator[](int i )  const ->float {
+    auto operator[] (int i )  const ->float {
         return i==0 ? x: y;
     }
 };
