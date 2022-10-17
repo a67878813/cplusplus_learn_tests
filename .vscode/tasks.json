@@ -18,6 +18,10 @@
                 //"-I/usr/lib/gcc/x86_64-linux-gnu/11",
                 // "-I/usr/local/lib/include", //google benchmark
                 // "-I/usr/local/lib", //google benchmark
+                "-I/home/sa/Cpp/unpv13e-master/lib", //unix socketAPI 1
+                "-I/home/sa/Cpp/unpv13e-master/libfree", //unix socketAPI 1
+                "-L/home/sa/Cpp/unpv13e-master/lib", //unix socketAPI 1
+                "-L/home/sa/Cpp/unpv13e-master/libfree", //unix socketAPI 1
                 // "-L/usr/local/lib",
                 // "-I/home/sa/benchmark/src",
                 // "-L/usr/local/share/doc/",
