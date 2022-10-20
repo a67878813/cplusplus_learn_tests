@@ -5,7 +5,8 @@
             "type": "process", // 可以为process或shell
             "label": "Compile", // 任务名称，与launch.json的preLaunchTask相对应
             
-            "command": "/usr/bin/clang++-13", // 要使用的编译器，C语言用clang
+            // "command": "/usr/bin/clang++-14", // 要使用的编译器，C语言用clang
+            "command": "/usr/bin/clang++-14", // 要使用的编译器，C语言用clang
             // "command": "/usr/bin/clang", // 要使用的编译器，C语言用clang
             "args": [
                 // "-fdiagnostics-color=always",
@@ -20,8 +21,9 @@
                 // "-I/usr/local/lib", //google benchmark
                 "-I/home/sa/Cpp/unpv13e-master/lib", //unix socketAPI 1
                 "-I/home/sa/Cpp/unpv13e-master/libfree", //unix socketAPI 1
-                "-L/home/sa/Cpp/unpv13e-master/lib", //unix socketAPI 1
-                "-L/home/sa/Cpp/unpv13e-master/libfree", //unix socketAPI 1
+                "-L/home/sa/Cpp/unpv13e-master/", //unix socketAPI 1
+                "-lunp",
+                // "-L/home/sa/Cpp/unpv13e-master/libfree", //unix socketAPI 1
                 // "-L/usr/local/lib",
                 // "-I/home/sa/benchmark/src",
                 // "-L/usr/local/share/doc/",
@@ -50,7 +52,7 @@
                 // ubuntu nees
                 // sudo apt install libc++-dev, libunwind-dev
                 // "-O3", // o3 optimize for release
-                "-std=c++2a", // 这里采用c++17标准（推荐），C语言改成"-std=c11"
+                "-std=c++2b", // 这里采用c++17标准（推荐），C语言改成"-std=c11"
                 "-fms-extensions",
                 // "-std=c11", // 这里采用c++17标准（推荐），C语言改成"-std=c11"
                 // "-fmodules-ts",
