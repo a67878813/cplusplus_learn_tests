@@ -1,4 +1,5 @@
 #include	"unp.h"
+// #include	"../lib/unp.h"
 
 #include	<stdarg.h>		/* ANSI C header file */
 #include	<syslog.h>		/* for syslog() */
@@ -70,9 +71,9 @@ err_msg(const char *fmt, ...)
 void
 err_quit(const char *fmt, ...)
 {
-	va_list		ap;
+	va_list		ap;//argument pinter
 
-	va_start(ap, fmt);
+	va_start(ap, fmt);//last_named_param
 	err_doit(0, LOG_ERR, fmt, ap);
 	va_end(ap);
 	exit(1);
