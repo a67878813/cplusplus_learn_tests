@@ -15,20 +15,31 @@ main(int argc, char **argv)
 {
 	int					sockfd, n;
 	char				recvline[MAXLINE + 1];
-	struct sockaddr_in	servaddr;
+	//ipv4
+	// struct sockaddr_in	servaddr;
+	//ipv6
+	struct sockaddr_in6	servaddr;
+
 
 	if (argc != 2)
 		err_quit("usage: a.out <IPaddress>");
 
-	if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+
+	// if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+	//ipv6
+	if ( (sockfd = socket(AF_INET6, SOCK_STREAM, 0)) < 0)
 		err_sys("socket error");
 
 	bzero(&servaddr, sizeof(servaddr));//set bytes to 0
-	servaddr.sin_family = AF_INET;
-	servaddr.sin_port   = htons(13);//to bits type	/* daytime server */
+	// servaddr.sin_family = AF_INET;
+	servaddr.sin6_family = AF_INET6;
+	// servaddr.sin_port   = htons(13);//to bits type	/* daytime server */
+	servaddr.sin6_port   = htons(13);//to bits type	/* daytime server */
 	// i means Interface
 	// inet_pton  // Presentation to bitNumber 
-	if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) <= 0)
+	// if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) <= 0)
+	//                     argv[1] 192.168.2.2
+	if (inet_pton(AF_INET6, argv[1], &servaddr.sin6_addr) <= 0)
 
 		err_quit("inet_pton error for %s", argv[1]);
 
