@@ -12,6 +12,8 @@ extern "C"{
 #endif
 // #include "../lib/error.c"
 
+#include <string.h>
+
 
 
 int
