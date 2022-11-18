@@ -1,5 +1,21 @@
-#include	"unp.h"
-#include	<time.h>
+// #include	"unp.h"
+
+#ifdef __cplusplus
+// namespace ex{
+extern "C"{
+#endif
+
+#include	"../lib/unp.h"
+
+#ifdef __cplusplus
+}
+#endif
+// #include "../lib/error.c"
+
+#include <string.h>
+
+
+
 
 int
 main(int argc, char **argv)

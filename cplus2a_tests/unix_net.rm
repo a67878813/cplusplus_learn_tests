@@ -1,0 +1,36 @@
+### TCP error code
+connect() 
+    ETIMEDOUT  ,SYN-6s-retry  24s-retry .
+    ECONNREFUSED   serv ->> RST to SYN.  thereis no server in the port 
+    EHOSTUNREACH  ENETUNREACH  // cli ->> router ->> "destination unreachable  |ICMP error; 
+
+bind()
+    EADDRINUSE
+    SO_REUSEADDR 
+    SO_REUSERPORT
+listen()
+    #include <sys/socket.h>
+    int listen(int sockfd, int backlog);
+
+accept()
+    #include <sys/socket.h>
+    int accept( int sockfd, struct sockaddr* cliaddr, socklen_t* addrlen);
+
+fork() exec()
+    #include <unistd.h>
+    pid_t fork(void);
+
+
+    exec
+    #include <unistd.h>
+    int exec1( const char* pathname, const char* arg0, ... /* (char *) 0 */ );
+    
+    int execv (const char *pathname, char*      const *argv[]);
+
+    int execle(const char *pathname, const char* arg0,... /*(char *) 0,char *const envp[] */);
+
+    int execve( const char *pathname, char *const argv[], char *const envp[]);
+
+    int execlp(const char *filename, const char *arg0,... /*(char *) 0 */);
+
+    int execvp(const char *filename, char *const argv[]);
