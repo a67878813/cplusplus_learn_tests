@@ -34,3 +34,16 @@ fork() exec()
     int execlp(const char *filename, const char *arg0,... /*(char *) 0 */);
 
     int execvp(const char *filename, char *const argv[]);
+
+
+
+    getsockname   getpeername()
+
+    #include <sys/socket.h>
+
+    //get sockaddr*
+    //get local socket name
+    int getsockname(int sockfd,struct sockaddr* localaddr, socklen_t * addrlen);
+    
+    //get distant socket name
+    int getpeername( int sockfd, struct sockaddr* peeraddr, socklen_t* addrlen);
