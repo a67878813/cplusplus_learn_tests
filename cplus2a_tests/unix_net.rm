@@ -1,3 +1,17 @@
+#common C++
+// #include	"unp.h"
+#ifdef __cplusplus
+extern "C"{
+#endif
+
+#include	"../lib/unp.h"
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
 ### TCP error code
 connect() 
     ETIMEDOUT  ,SYN-6s-retry  24s-retry .

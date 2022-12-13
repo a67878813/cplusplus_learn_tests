@@ -16,3 +16,6 @@ int main(){
     std::cout << "s1 = " << s1 << std::endl;
     std::cout << "s2 = " << s2 << std::endl;
 }
+void rr(){
+    dfkdfj
+}
