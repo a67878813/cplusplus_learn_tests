@@ -3,17 +3,22 @@
 
 class X{
 public:
+virtual ~X(){};
 virtual void  rotate() const {
     std::cout << "X::rotate" << std::endl;
-}
+    };
+
 };
+
 class Z: public X{
 public:
+~Z() override{};
 virtual void rotate() const override {
     std::cout << "Z::rotate" << std::endl;
 }
 };
 
+#include <unistd.h>
 void rotate(
     X  datum,
     const X* pointer,
@@ -27,7 +32,7 @@ void rotate(
 
 }
 
-#include <unistd.h>
+
 
 int main(){
     pid_t pid = getpid();
@@ -36,3 +41,9 @@ int main(){
     rotate(z,&z,z);
     return 0;
 }
+/* outputs:
+PID:2299378
+size of 8|8|8
+Z::rotate
+Z::rotate
+X::rotate */
