@@ -115,3 +115,77 @@ struct Point{
     int y = 0;
 
 };
+
+Point pt;
+Point* pPt = &pt;
+const Point* cpPt = &pt;
+Point& lrPt = pt;
+Point&& rrPt = {};
+
+
+//lv expr
+using T1 = decltype((pt)); // Point&
+using T2 = decltype((pPt)); // Point*  &
+using T4 = decltype((cpPt));//const Point *  &
+using T5 = decltype((lrPt));//Point&
+//rrPt ; // Point&
+//rrPt.x // int&
+//pt.x //int&
+//++pt.x // int&          
+
+
+//pure rv expr
+using T9= decltype((pt.x++)); //int  // get value ,and ++
+using T10 =decltype((Point{1,2})); //Point
+using T11 = decltype  ((5)); // int
+
+
+// xvalue // have a rvalue when there is no lvalue.
+using T12 = decltype ((Point{10,10}.x)); // int&&
+using T13 = decltype ((std::move(pt)));// Point&&  
+// Is std::move delete lv exprssion's lvalue?
+
+using T14 = decltype  (( static_cast<Point&&>(pt)));//Point&&
+
+
+// no () version
+//get defenition's type
+using T21 = decltype(pt); //Point;
+// pPt; // Point*
+//cpPt // const Ponit*
+//lrPt // Pint&
+//rrPt ; // Point&&
+//rrPt.x // int
+//pt.x //int
+//Point{10,10}.x // int
+
+decltype(pt) v1 = pt; // Point
+decltype((pt)) v2 = pt; // Point&
+decltype(1+2+3+4) v3 = 1+2+3+4 ; // int
+
+//after c++14
+decltype(auto) v11 = pt; // Point
+decltype(auto) v12 = (pt); // Point
+decltype(auto) v13 = 1+2+3+4; // Point
+
+
+
+#include <string>
+using std::string;
+string lookup1();
+string& lookup2();
+
+string look_up_a_string_1(){return lookup1();} // value semantic
+string& look_up_a_string_2(){return lookup2();}// reference semantic
+
+//decltype(auto)
+// return value
+decltype(auto) look_up_a_string_11(){return lookup1();}
+decltype(auto) look_up_a_string_22(){return lookup2();}
+
+                                                                //auto defination tyoe
+decltype(auto) look_up_a_string_13(){auto str = lookup1();return str;}
+
+                                                            //  auto () //lv expr 
+decltype(auto) look_up_a_string_23(){auto str = lookup1();return (str);}
+//reference a stack memory reference
