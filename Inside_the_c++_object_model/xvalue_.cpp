@@ -4,9 +4,9 @@
 #include <iostream>
 
 struct GNode{
-    using _TCache = std::map<const GNode*, GNode* >;
+    using _TCache = std::map<const GNode*, GNode* >;// map< self pointer ,  copyed pointer>
 
-    GNode* clone( _TCache&& cache = {}) const { // temperary rvalue, 
+    GNode* clone( _TCache&& cache = {}) const { // temperary rvalue,  // flat  cache
         if(auto iter = cache.find(this);
         iter != cache.end()){return iter->second;}
     auto node = new GNode (* this);//cloned target
