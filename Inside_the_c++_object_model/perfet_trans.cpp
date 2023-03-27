@@ -179,7 +179,7 @@ string look_up_a_string_1(){return lookup1();} // value semantic
 string& look_up_a_string_2(){return lookup2();}// reference semantic
 
 //decltype(auto)
-// return value
+// return valuey 
 decltype(auto) look_up_a_string_11(){return lookup1();}
 decltype(auto) look_up_a_string_22(){return lookup2();}
 
@@ -189,3 +189,16 @@ decltype(auto) look_up_a_string_13(){auto str = lookup1();return str;}
                                                             //  auto () //lv expr 
 decltype(auto) look_up_a_string_23(){auto str = lookup1();return (str);}
 //reference a stack memory reference
+
+
+struct AFunctionObj{
+    double operator()(char, int);
+    float operator()(int);
+} f;
+
+template<typename F, typename...Args>
+
+using InvokeResultOfFunc = decltype( F{} (Args{}...));
+                                    //F{} instantiate a function obj
+                                    //Args{}instantiate some args objs.
+
