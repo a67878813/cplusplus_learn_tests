@@ -202,3 +202,8 @@ using InvokeResultOfFunc = decltype( F{} (Args{}...));
                                     //F{} instantiate a function obj
                                     //Args{}instantiate some args objs.
 
+//equal to 
+
+template<typename F, typename...Args>
+                        // return an F&& type
+using Iv2 = decltype(std::declval<F>() (std::declval<Args>() ... ) );
