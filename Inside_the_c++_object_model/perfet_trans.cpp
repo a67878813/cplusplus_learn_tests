@@ -43,7 +43,7 @@
 #include <vector>
 using std::vector;
 
-int main()
+int main2()
 {
 
 
@@ -198,12 +198,28 @@ struct AFunctionObj{
 
 template<typename F, typename...Args>
 
-using InvokeResultOfFunc = decltype( F{} (Args{}...));
+using InvokeResultOfFunc = decltype( F{} (Args{}...));// could be asserted by ctor's fail
                                     //F{} instantiate a function obj
                                     //Args{}instantiate some args objs.
 
 //equal to 
 
 template<typename F, typename...Args>
+                        // std::declval< F >() 
                         // return an F&& type
-using Iv2 = decltype(std::declval<F>() (std::declval<Args>() ... ) );
+using InvokeResultOfFunc2  = decltype(std::declval<F>()  (std::declval<Args>() ... ) );
+                            // decltype ()    // defination type
+                            //F 's define type
+
+
+
+using T31 = InvokeResultOfFunc2<AFunctionObj, char, int>; // double
+using T32 = InvokeResultOfFunc2<AFunctionObj,  int>; // float
+
+template<typename T> T&& declval();
+
+int main()
+{
+    declval<AFunctionObj>();
+}
+
