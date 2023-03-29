@@ -35,8 +35,8 @@ template<typename T> struct declval_protector
 template<typename T> T&& declval()
 {
     static_assert(declval_protector<T>::value, // alert when using wrong
-    // false,//always aleart
-    "   declval only used in dectype/sizeof");
+    // static_assert (false) , //will always aleart
+    " ====LEART!!  declval only used in decltype/sizeof");
 }
 
 
