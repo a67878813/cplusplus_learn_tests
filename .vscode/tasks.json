@@ -32,6 +32,8 @@
                 // "-L/usr/local/include",
                 // "-lbenchmark",
                 // "-lpthread",
+                // "-I/usr/local/include/benchmark/",
+                // "-L/usr/local/lib",
                 "-o", // 指定输出文件名，os X和Linux下不加该参数则默认输出a.out，win下默认a.exe
                 "${fileDirname}/${fileBasenameNoExtension}.out", // 指定编译生成结果（.out文件和.out.dSYM文件夹）
                 // "-E",

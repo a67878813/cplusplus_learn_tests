@@ -128,6 +128,8 @@ using T1 = decltype((pt)); // Point&
 using T2 = decltype((pPt)); // Point*  &
 using T4 = decltype((cpPt));//const Point *  &
 using T5 = decltype((lrPt));//Point&
+using T6 = decltype(rrPt);
+using  T7 = decltype((rrPt));
 //rrPt ; // Point&
 //rrPt.x // int&
 //pt.x //int&

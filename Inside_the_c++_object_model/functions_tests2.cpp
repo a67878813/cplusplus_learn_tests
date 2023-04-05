@@ -12,9 +12,3 @@ std::function<int(int,int)> OperationFactory(Op op){
         case Op::MUL: return std::multiplies<int>{};
     }
 }
-
-
-
-
-
-
