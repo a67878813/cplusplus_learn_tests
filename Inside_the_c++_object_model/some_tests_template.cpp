@@ -19,5 +19,7 @@ auto declval() -> decltype(declval_<T>(0)) {
 using T1 = int ;
 int main(){
     std::cout << "size is "<<
-    sizeof(decltype(declval<void>() )) << std::endl;;
+    sizeof(decltype(declval<T1>() )) << std::endl;;
+    //decltype(declval<void>()) ;  // void
+    //decltype(declval<Point>()) ;  // Point&&
 }
